@@ -2,81 +2,79 @@ package com.example.ventasOtmV2.services;
 
 import com.example.ventasOtmV2.exceptions.RequestException;
 import com.example.ventasOtmV2.models.Cliente;
+import com.example.ventasOtmV2.models.Compra;
 import com.example.ventasOtmV2.repository.ClienteRepository;
+import com.example.ventasOtmV2.repository.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class ClienteServiceImp implements ClienteService{
+public class CompraServiceImp implements CompraService{
     @Autowired
-    private ClienteRepository clienteRepository;
+    private CompraRepository compraRepository;
 
     @Override
-    public Cliente saveCliente(Cliente cliente) {
+    public Compra save(Compra compra) {
 
         //comprobar si se envian los datos necesarios
-        if(cliente.getNombre()==null || cliente.getNombre().equals("")){
+        if(compra.getPrecioCompra()==0){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"nombre faltante");
-        }else if(cliente.getCorreo()==null || cliente.getCorreo().equals("")){
+        }else if(compra.getCantidad()==null || compra.getCantidad().equals("")){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"correo faltante");
         }
 
-        return clienteRepository.save(cliente);
+        return compraRepository.save(compra);
     }
 
     @Override
-    public Cliente getCliente(Integer id) {
+    public Compra get(Integer id) {
 
         //comprobar si existe la entidad
-        if(!clienteRepository.existsById(id)){
+        if(!compraRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
-        return clienteRepository.findById(id).get();
+        return compraRepository.findById(id).get();
     }
 
     @Override
-    public List<Cliente> getAllClientes() {
-        return clienteRepository.findAll();
+    public List<Compra> getAll() {
+        return compraRepository.findAll();
     }
 
     @Override
-    public void updateClientes(Cliente cliente) {
+    public void update(Compra compra) {
 
         //comprobar si existe la entidad
-        if(!clienteRepository.existsById(cliente.getId())){
+        if(!compraRepository.existsById(compra.getId())){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         //comprobar si se envian los datos necesarios
-        if(cliente.getNombre()==null || cliente.getNombre().equals("")){
+        if(compra.getPrecioCompra()==0){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"nombre faltante");
-        }else if(cliente.getCorreo()==null || cliente.getCorreo().equals("")){
+        }else if(compra.getCantidad()==null || compra.getCantidad().equals("")){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"correo faltante");
         }
 
-        clienteRepository.save(cliente);
+        compraRepository.save(compra);
     }
 
     @Override
-    public void deleteClientes(Integer id) {
+    public void delete(Integer id) {
 
         //comprobar si existe la entidad
-        if(!clienteRepository.existsById(id)){
+        if(!compraRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
-        clienteRepository.deleteById(id);
+        compraRepository.deleteById(id);
 
         //comprobar si se elimino la entidad
-        if(clienteRepository.existsById(id)){
+        if(compraRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"La entidad no se elimino");
         }
 
