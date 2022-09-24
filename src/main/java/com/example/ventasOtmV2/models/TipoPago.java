@@ -1,9 +1,7 @@
 package com.example.ventasOtmV2.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class TipoPago {
@@ -15,6 +13,8 @@ public class TipoPago {
     private String medioPago;
     private Integer cuotas;
 
+    @OneToMany(mappedBy = "tipoPagoFactura",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Factura> facturas;
 
     public TipoPago() {
     }
