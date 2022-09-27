@@ -22,6 +22,8 @@ public class CompraController {
 
     @PostMapping("/save")
     public ResponseEntity<Compra> add(@RequestBody Compra compra){
+        System.out.println("comp-save: " + compra);
+
         return ResponseEntity.ok(compraService.save(compra)) ;
     }
 

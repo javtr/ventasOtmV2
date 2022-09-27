@@ -1,10 +1,12 @@
 package com.example.ventasOtmV2.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 
 @Entity
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Compra {
 
     @Id
@@ -16,17 +18,17 @@ public class Compra {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id",nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private Producto productoCompra;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id",nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private Cliente clienteCompra;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id",nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private Factura facturaCompra;
 
 

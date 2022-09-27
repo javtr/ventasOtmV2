@@ -22,7 +22,7 @@ public class FacturaController {
 
     @PostMapping("/save")
     public ResponseEntity<Factura> add(@RequestBody Factura factura){
-        System.out.println(factura);
+        System.out.println("fac-save: " + factura);
         return ResponseEntity.ok(facturaService.save(factura)) ;
     }
 

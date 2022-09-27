@@ -1,10 +1,14 @@
 package com.example.ventasOtmV2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.Entity;
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Cliente {
 
     @Id
@@ -17,9 +21,11 @@ public class Cliente {
 
 
     @OneToMany(mappedBy = "clienteCompra",fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Compra> compras;
 
     @OneToMany(mappedBy = "clienteFactura",fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Factura> facturas;
 
 

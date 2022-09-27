@@ -20,26 +20,30 @@ public class Factura {
     private double valorCompra;
     private boolean compraActiva;
 
-    @OneToMany(mappedBy = "facturaCompra",fetch = FetchType.LAZY)
-    private Set<Compra> compras;
-
-    @OneToMany(mappedBy = "facturaPago",fetch = FetchType.LAZY)
-    private Set<Pago> pagos;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medioPago_id",nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private MedioPago medioPagoFactura;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoPago_id",nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private TipoPago tipoPagoFactura;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id",nullable = false)
-    @JsonIgnore
+    //@JsonIgnore
     private Cliente clienteFactura;
+
+
+    @OneToMany(mappedBy = "facturaCompra",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Compra> compras;
+
+    @OneToMany(mappedBy = "facturaPago",fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<Pago> pagos;
 
 
     public Factura() {
