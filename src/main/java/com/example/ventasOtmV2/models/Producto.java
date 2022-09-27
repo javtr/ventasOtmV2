@@ -13,7 +13,7 @@ public class Producto {
     private String nombre;
     private double precio;
 
-    @OneToMany(mappedBy = "productoCompra",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "productoCompra",fetch = FetchType.LAZY)
     private Set<Compra> compras;
 
     public Producto() {

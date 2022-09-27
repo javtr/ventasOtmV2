@@ -16,10 +16,10 @@ public class Cliente {
     private String correo;
 
 
-    @OneToMany(mappedBy = "clienteCompra",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "clienteCompra",fetch = FetchType.LAZY)
     private Set<Compra> compras;
 
-    @OneToMany(mappedBy = "clienteFactura",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "clienteFactura",fetch = FetchType.LAZY)
     private Set<Factura> facturas;
 
 

@@ -1,5 +1,7 @@
 package com.example.ventasOtmV2.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -13,7 +15,7 @@ public class TipoPago {
     private String tipoPago;
     private Integer cuotas;
 
-    @OneToMany(mappedBy = "tipoPagoFactura",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "tipoPagoFactura",fetch = FetchType.LAZY)
     private Set<Factura> facturas;
 
     public TipoPago() {
