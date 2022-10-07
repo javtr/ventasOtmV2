@@ -18,17 +18,14 @@ public class Compra {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id",nullable = false)
-    //@JsonIgnore
     private Producto productoCompra;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id",nullable = false)
-    //@JsonIgnore
     private Cliente clienteCompra;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id",nullable = false)
-    //@JsonIgnore
     private Factura facturaCompra;
 
 

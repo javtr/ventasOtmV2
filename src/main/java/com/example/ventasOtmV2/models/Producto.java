@@ -17,7 +17,7 @@ public class Producto {
     private String nombre;
     private double precio;
 
-    @OneToMany(mappedBy = "productoCompra",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productoCompra",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Compra> compras;
 

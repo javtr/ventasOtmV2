@@ -17,14 +17,16 @@ public class Cliente {
     private Integer id;
 
     private String nombre;
+
+    private String apellido;
     private String correo;
 
 
-    @OneToMany(mappedBy = "clienteCompra",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "clienteCompra",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Compra> compras;
 
-    @OneToMany(mappedBy = "clienteFactura",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "clienteFactura",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Factura> facturas;
 
@@ -46,6 +48,14 @@ public class Cliente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreo() {
@@ -77,6 +87,7 @@ public class Cliente {
         return "Cliente{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 ", correo='" + correo + '\'' +
                 ", compras=" + compras +
                 ", facturas=" + facturas +

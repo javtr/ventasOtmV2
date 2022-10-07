@@ -46,20 +46,6 @@ public class PagoServiceImp implements PagoService {
         return pagoRepository.findById(id).get();
     }
 
-    @Override
-    public Factura getFactura(Integer id) {
-
-        //comprobar si existe la entidad
-        if(!pagoRepository.existsById(id)){
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
-        }
-
-        Integer idFactura = pagoRepository.findById(id).get().getFacturaPago().getId();
-
-        return facturaRepository.findById(idFactura).get();
-    }
-
-
 
     @Override
     public List<Pago> getAll() {

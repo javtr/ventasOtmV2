@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class FacturaServiceImp implements FacturaService {
@@ -18,6 +19,10 @@ public class FacturaServiceImp implements FacturaService {
     private FacturaRepository facturaRepository;
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private PagoRepository pagoRepository;
+
 
     @Override
     public Factura save(Factura factura) {
@@ -89,4 +94,17 @@ public class FacturaServiceImp implements FacturaService {
         }
 
     }
+
+    @Override
+    public Set<Pago> getPagos(Integer id) {
+
+        //comprobar si existe la entidad
+        if(!facturaRepository.existsById(id)){
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
+        }
+
+        return facturaRepository.findById(id).get().getPagos();
+    }
+
+
 }

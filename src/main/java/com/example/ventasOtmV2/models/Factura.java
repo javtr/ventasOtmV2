@@ -23,17 +23,14 @@ public class Factura {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "medioPago_id",nullable = false)
-    //@JsonIgnore
     private MedioPago medioPagoFactura;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tipoPago_id",nullable = false)
-    //@JsonIgnore
     private TipoPago tipoPagoFactura;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id",nullable = false)
-    //@JsonIgnore
     private Cliente clienteFactura;
 
 
@@ -41,7 +38,7 @@ public class Factura {
     @JsonIgnore
     private Set<Compra> compras;
 
-    @OneToMany(mappedBy = "facturaPago",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "facturaPago",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Pago> pagos;
 

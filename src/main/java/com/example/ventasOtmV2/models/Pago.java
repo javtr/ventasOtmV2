@@ -8,7 +8,7 @@ import org.hibernate.Hibernate;
 import javax.persistence.*;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Pago {
 
     @Id
@@ -22,7 +22,6 @@ public class Pago {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id",nullable = false)
-    //@JsonIgnore
     private Factura facturaPago;
 
 

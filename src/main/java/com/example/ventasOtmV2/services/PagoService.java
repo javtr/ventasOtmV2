@@ -10,8 +10,6 @@ public interface PagoService {
     public Pago save(Pago pago);
     public Pago get(Integer id);
 
-    public Factura getFactura(Integer id);
-
     public List<Pago> getAll();
     public void update(Pago pago);
     public void delete(Integer id);

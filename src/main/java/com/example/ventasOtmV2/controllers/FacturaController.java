@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/factura")
@@ -56,4 +57,12 @@ public class FacturaController {
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad eliminada");
         return response;
     }
+
+    //obtener sets del lado OneToMany
+
+    @GetMapping("/get-pagos/{id}")
+    public ResponseEntity<Set<Pago>> getPagos(@PathVariable Integer id){
+        return ResponseEntity.ok(facturaService.getPagos(id)) ;
+    }
+
 }

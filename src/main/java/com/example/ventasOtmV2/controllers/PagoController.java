@@ -27,7 +27,8 @@ public class PagoController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Pago> get(@PathVariable Integer id ){
+    public ResponseEntity<Pago> get(@PathVariable Integer id )
+    {
         return ResponseEntity.ok(pagoService.get(id)) ;
     }
 
@@ -37,10 +38,7 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.getAll()) ;
     }
 
-    @GetMapping("/get-factura/{id}")
-    public ResponseEntity<Factura> getFactura(@PathVariable Integer id){
-        return ResponseEntity.ok(pagoService.getFactura(id)) ;
-    }
+
 
     @PutMapping("/edit")
     public ResponseEntity<String> edit(@RequestBody Pago pago ){
@@ -53,7 +51,7 @@ public class PagoController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> delete(@PathVariable Integer id ){
+    public ResponseEntity<String> delete(@PathVariable Integer id ) {
         ResponseEntity<String> response;
 
         pagoService.delete(id);
