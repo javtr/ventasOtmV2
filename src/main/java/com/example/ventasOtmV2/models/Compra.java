@@ -32,6 +32,14 @@ public class Compra {
     public Compra() {
     }
 
+    public Compra(double precioCompra, Integer cantidad, Producto productoCompra, Cliente clienteCompra, Factura facturaCompra) {
+        this.precioCompra = precioCompra;
+        this.cantidad = cantidad;
+        this.productoCompra = productoCompra;
+        this.clienteCompra = clienteCompra;
+        this.facturaCompra = facturaCompra;
+    }
+
     public Integer getId() {
         return id;
     }

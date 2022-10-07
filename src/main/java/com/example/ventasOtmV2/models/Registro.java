@@ -1,6 +1,7 @@
 package com.example.ventasOtmV2.models;
 
 
+import java.util.List;
 import java.util.Set;
 
 public class Registro {
@@ -14,9 +15,9 @@ public class Registro {
     private String medioPago;
     private String tipoPago;
     private Integer cuotas;
-    private Set<ProductoComprado> productoComprado;
+    private List<ProductoComprado> productoComprado;
 
-    public Registro(String nombre, String apellido, String correo, String fecha, String medioPago, String tipoPago, Integer cuotas, Set<ProductoComprado> productoComprado) {
+    public Registro(String nombre, String apellido, String correo, String fecha, String medioPago, String tipoPago, Integer cuotas, List<ProductoComprado> productoComprado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -83,11 +84,11 @@ public class Registro {
         this.cuotas = cuotas;
     }
 
-    public Set<ProductoComprado> getProductoComprado() {
+    public List<ProductoComprado> getProductoComprado() {
         return productoComprado;
     }
 
-    public void setProductoComprado(Set<ProductoComprado> productoComprado) {
+    public void setProductoComprado(List<ProductoComprado> productoComprado) {
         this.productoComprado = productoComprado;
     }
 

@@ -46,6 +46,15 @@ public class Factura {
     public Factura() {
     }
 
+    public Factura(String fechaCompra, double valorCompra, boolean compraActiva, MedioPago medioPagoFactura, TipoPago tipoPagoFactura, Cliente clienteFactura) {
+        this.fechaCompra = fechaCompra;
+        this.valorCompra = valorCompra;
+        this.compraActiva = compraActiva;
+        this.medioPagoFactura = medioPagoFactura;
+        this.tipoPagoFactura = tipoPagoFactura;
+        this.clienteFactura = clienteFactura;
+    }
+
     public Integer getId() {
         return id;
     }

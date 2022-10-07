@@ -24,12 +24,8 @@ public class RegistroController {
     @PostMapping("/save")
     //@RequestMapping(value = "/save", method = RequestMethod.POST, produces = {MimeTypeUtils.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> getRegistro(@RequestBody Registro registro ){
-
-        System.out.println(registro);
-
         registroService.saveRegistro(registro); ;
-
-        return ResponseEntity.status(HttpStatus.OK).body("Entidad eliminada");
+        return ResponseEntity.status(HttpStatus.OK).body("Datos recibidos");
     }
 
 }
