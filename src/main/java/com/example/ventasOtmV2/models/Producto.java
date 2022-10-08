@@ -24,6 +24,9 @@ public class Producto {
     public Producto() {
     }
 
+    public Producto(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;

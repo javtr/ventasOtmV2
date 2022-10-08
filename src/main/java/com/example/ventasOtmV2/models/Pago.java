@@ -17,6 +17,11 @@ public class Pago {
 
     @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
     private String fechaPago;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    private String fechaDesembolso;
+
+
     private double valorPago;
     private double valorPagoNeto;
 
@@ -28,6 +33,21 @@ public class Pago {
     public Pago() {
     }
 
+    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Factura facturaPago) {
+        this.fechaPago = fechaPago;
+        this.fechaDesembolso = fechaDesembolso;
+        this.valorPago = valorPago;
+        this.valorPagoNeto = valorPagoNeto;
+        this.facturaPago = facturaPago;
+    }
+
+    public String getFechaDesembolso() {
+        return fechaDesembolso;
+    }
+
+    public void setFechaDesembolso(String fechaDesembolso) {
+        this.fechaDesembolso = fechaDesembolso;
+    }
 
     public Integer getId() {
         return id;
@@ -78,9 +98,13 @@ public class Pago {
         return "Pago{" +
                 "id=" + id +
                 ", fechaPago='" + fechaPago + '\'' +
+                ", fechaDesembolso=" + fechaDesembolso +
                 ", valorPago=" + valorPago +
                 ", valorPagoNeto=" + valorPagoNeto +
                 ", facturaPago=" + facturaPago +
+
                 '}';
     }
+
+
 }

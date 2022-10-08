@@ -40,6 +40,10 @@ public class Cliente {
         this.correo = correo;
     }
 
+    public Cliente(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

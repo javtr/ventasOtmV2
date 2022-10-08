@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -33,10 +37,16 @@ public class RegistroServiceImp implements RegistroService{
     @Autowired
     private FacturaRepository facturaRepository;
 
+    @Autowired
+    private CompraService compraService;
+
+    @Autowired
+    private PagoService pagoService;
+
 
 
     @Override
-    public void saveRegistro(Registro registro) {
+    public void saveRegistro(Registro registro) throws ParseException {
 
         System.out.println(registro);
 
@@ -80,8 +90,11 @@ public class RegistroServiceImp implements RegistroService{
         //factura
         Factura factura = new Factura(registro.getFecha(),totalCompra,true,medioPagoService.get(idMedioPago),tipoPagoService.get(idTipoPago),clienteService.getCliente(idCliente));
         Integer idFactura = (facturaService.save(factura)).getId();
+        Factura facturaSend = new Factura(idFactura);
 
         //compras
+
+        double totalTodasCompras = 0;
 
         for (int i = 0; i < registro.getProductoComprado().size(); i++) {
 
@@ -89,34 +102,70 @@ public class RegistroServiceImp implements RegistroService{
 
             if ( registro.getProductoComprado().get(i).isDescuento()){
                 precioProducto = registro.getProductoComprado().get(i).getPrecioFinal();
+                totalTodasCompras = totalTodasCompras +precioProducto;
             }else{
                 precioProducto = registro.getProductoComprado().get(i).getPrecio();
+                totalTodasCompras = totalTodasCompras +precioProducto;
             }
 
 
             Integer idProductoIt =(registro.getProductoComprado().get(i).getProducto()-1);
             Integer idProductoSr =productoService.getAll().get(idProductoIt).getId();
 
-            System.out.println("precioProducto: "+ precioProducto);
-            System.out.println("idProductoIt: "+ idProductoIt);
-            System.out.println("getCantidad: "+  registro.getProductoComprado().get(i).getCantidad());
-            System.out.println("idProductoIt: "+  idProductoIt);
-            System.out.println("idProductoSr: "+  idProductoSr);
+            Producto productoSend = new Producto(idProductoSr);
+            Cliente clienteSend = new Cliente(idCliente);
 
-            System.out.println("ProductoIt: "+  productoService.get(idProductoSr));
-            System.out.println("clienteService: "+  clienteService.getCliente(idCliente));
-            System.out.println(idFactura);
-            System.out.println("facturaService: "+  facturaRepository.existsById(idFactura));
-            System.out.println("facturaService: "+  facturaRepository.findById(14).get());
-
-
-
-            //Compra compra = new Compra(precioProducto,registro.getProductoComprado().get(i).getCantidad(),productoService.get(idProductoSr),clienteService.getCliente(idCliente),facturaService.get(idFactura));
-            //System.out.println(compra);
-
+            Compra compra = new Compra(precioProducto,registro.getProductoComprado().get(i).getCantidad(),productoSend,clienteSend,facturaSend);
+            compraService.save(compra);
         }
 
+        //pagos
+        String tipoPagoReg = registro.getTipoPago();
+        Integer numeroCuotas = registro.getCuotas();
 
+
+        if (tipoPagoReg.equals("cuotas") && numeroCuotas>1){
+
+            String fechaPago = registro.getFecha();
+            Date fechaPagoDate =new SimpleDateFormat("yyyy-MM-dd").parse(fechaPago);
+            double pagoCuota = totalTodasCompras / numeroCuotas;
+            double feeCuota = 0.9;
+
+
+            //por cada cuota
+            for (int i = 0; i < numeroCuotas; i++) {
+
+                //obtener calendario, darle la fecha de pago y aumentar un mes por cuota
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(fechaPagoDate);
+                cal.add(Calendar.MONTH, i);
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                String dateCuota = sdf.format(cal.getTime());
+
+                //calcular fecha de desembolso
+                //aumentar un mes y setear el dia del mes a primero
+
+                Calendar fechaDesembolso = cal;
+                fechaDesembolso.add(Calendar.MONTH, 1);
+                fechaDesembolso.set(Calendar.DAY_OF_MONTH, 1);
+
+                SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+                String dateCuotaDes = sdf2.format(fechaDesembolso.getTime());
+
+
+                //guardar cada pago
+                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,(pagoCuota*feeCuota),facturaSend);
+                System.out.println(pagoService.save(pago));
+
+
+
+            }
+
+        } else if (tipoPagoReg.equals("unico")) {
+
+
+        }
 
 
     }

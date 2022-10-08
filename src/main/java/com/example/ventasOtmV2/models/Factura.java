@@ -55,6 +55,10 @@ public class Factura {
         this.clienteFactura = clienteFactura;
     }
 
+    public Factura(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
