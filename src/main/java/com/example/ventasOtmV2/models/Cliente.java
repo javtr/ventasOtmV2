@@ -21,6 +21,13 @@ public class Cliente {
     private String apellido;
     private String correo;
 
+    private String idMachine;
+
+    private String comentario1;
+
+    private String comentario2;
+
+
 
     @OneToMany(mappedBy = "clienteCompra",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JsonIgnore
@@ -34,10 +41,14 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String nombre, String apellido, String correo) {
+
+    public Cliente(String nombre, String apellido, String correo, String idMachine, String comentario1, String comentario2) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
+        this.idMachine = idMachine;
+        this.comentario1 = comentario1;
+        this.comentario2 = comentario2;
     }
 
     public Cliente(Integer id) {
@@ -76,6 +87,30 @@ public class Cliente {
         this.correo = correo;
     }
 
+    public String getIdMachine() {
+        return idMachine;
+    }
+
+    public void setIdMachine(String idMachine) {
+        this.idMachine = idMachine;
+    }
+
+    public String getComentario1() {
+        return comentario1;
+    }
+
+    public void setComentario1(String comentario1) {
+        this.comentario1 = comentario1;
+    }
+
+    public String getComentario2() {
+        return comentario2;
+    }
+
+    public void setComentario2(String comentario2) {
+        this.comentario2 = comentario2;
+    }
+
     public Set<Compra> getCompras() {
         return compras;
     }
@@ -99,6 +134,9 @@ public class Cliente {
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", correo='" + correo + '\'' +
+                ", idMachine='" + idMachine + '\'' +
+                ", comentario1='" + comentario1 + '\'' +
+                ", comentario2='" + comentario2 + '\'' +
                 ", compras=" + compras +
                 ", facturas=" + facturas +
                 '}';

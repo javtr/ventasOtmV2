@@ -14,6 +14,9 @@ public class Compra {
     private Integer id;
 
     private double precioCompra;
+
+    private double precioFinal;
+
     private Integer cantidad;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,8 +35,10 @@ public class Compra {
     public Compra() {
     }
 
-    public Compra(double precioCompra, Integer cantidad, Producto productoCompra, Cliente clienteCompra, Factura facturaCompra) {
+
+    public Compra(double precioCompra, double precioFinal, Integer cantidad, Producto productoCompra, Cliente clienteCompra, Factura facturaCompra) {
         this.precioCompra = precioCompra;
+        this.precioFinal = precioFinal;
         this.cantidad = cantidad;
         this.productoCompra = productoCompra;
         this.clienteCompra = clienteCompra;
@@ -42,6 +47,14 @@ public class Compra {
 
     public Integer getId() {
         return id;
+    }
+
+    public double getPrecioFinal() {
+        return precioFinal;
+    }
+
+    public void setPrecioFinal(double precioFinal) {
+        this.precioFinal = precioFinal;
     }
 
     public void setId(Integer id) {
@@ -88,11 +101,13 @@ public class Compra {
         this.facturaCompra = facturaCompra;
     }
 
+
     @Override
     public String toString() {
         return "Compra{" +
                 "id=" + id +
                 ", precioCompra=" + precioCompra +
+                ", precioFinal=" + precioFinal +
                 ", cantidad=" + cantidad +
                 ", productoCompra=" + productoCompra +
                 ", clienteCompra=" + clienteCompra +

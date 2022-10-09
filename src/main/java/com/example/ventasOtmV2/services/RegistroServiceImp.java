@@ -51,7 +51,7 @@ public class RegistroServiceImp implements RegistroService{
         System.out.println(registro);
 
         //Cliente
-        Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo());
+        Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo(), registro.getIdMachine(), registro.getComentario1(), registro.getComentario2());
         Integer idCliente = (clienteService.saveCliente(regCliente)).getId();
 
         //medio pago
@@ -95,10 +95,13 @@ public class RegistroServiceImp implements RegistroService{
         //compras
 
         double totalTodasCompras = 0;
+        double precioOriginal = 0;
 
         for (int i = 0; i < registro.getProductoComprado().size(); i++) {
 
             double precioProducto = 0;
+
+            precioOriginal = registro.getProductoComprado().get(i).getPrecio();
 
             if ( registro.getProductoComprado().get(i).isDescuento()){
                 precioProducto = registro.getProductoComprado().get(i).getPrecioFinal();
@@ -115,21 +118,20 @@ public class RegistroServiceImp implements RegistroService{
             Producto productoSend = new Producto(idProductoSr);
             Cliente clienteSend = new Cliente(idCliente);
 
-            Compra compra = new Compra(precioProducto,registro.getProductoComprado().get(i).getCantidad(),productoSend,clienteSend,facturaSend);
+            Compra compra = new Compra(precioOriginal,precioProducto,registro.getProductoComprado().get(i).getCantidad(),productoSend,clienteSend,facturaSend);
             compraService.save(compra);
         }
 
         //pagos
         String tipoPagoReg = registro.getTipoPago();
         Integer numeroCuotas = registro.getCuotas();
-
+        double feeCuota = 0.9;
 
         if (tipoPagoReg.equals("cuotas") && numeroCuotas>1){
 
             String fechaPago = registro.getFecha();
             Date fechaPagoDate =new SimpleDateFormat("yyyy-MM-dd").parse(fechaPago);
             double pagoCuota = totalTodasCompras / numeroCuotas;
-            double feeCuota = 0.9;
 
 
             //por cada cuota
@@ -163,6 +165,13 @@ public class RegistroServiceImp implements RegistroService{
             }
 
         } else if (tipoPagoReg.equals("unico")) {
+
+
+            //guardar el pago unico
+            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),facturaSend);
+            System.out.println(pagoService.save(pago));
+
+
 
 
         }

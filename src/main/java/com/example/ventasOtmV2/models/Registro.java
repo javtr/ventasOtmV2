@@ -10,6 +10,12 @@ public class Registro {
     private String apellido;
     private String correo;
 
+    private String idMachine;
+
+    private String comentario1;
+
+    private String comentario2;
+
     //@JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
     private String fecha;
     private String medioPago;
@@ -17,10 +23,14 @@ public class Registro {
     private Integer cuotas;
     private List<ProductoComprado> productoComprado;
 
-    public Registro(String nombre, String apellido, String correo, String fecha, String medioPago, String tipoPago, Integer cuotas, List<ProductoComprado> productoComprado) {
+
+    public Registro(String nombre, String apellido, String correo, String idMachine, String comentario1, String comentario2, String fecha, String medioPago, String tipoPago, Integer cuotas, List<ProductoComprado> productoComprado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
+        this.idMachine = idMachine;
+        this.comentario1 = comentario1;
+        this.comentario2 = comentario2;
         this.fecha = fecha;
         this.medioPago = medioPago;
         this.tipoPago = tipoPago;
@@ -50,6 +60,30 @@ public class Registro {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getIdMachine() {
+        return idMachine;
+    }
+
+    public void setIdMachine(String idMachine) {
+        this.idMachine = idMachine;
+    }
+
+    public String getComentario1() {
+        return comentario1;
+    }
+
+    public void setComentario1(String comentario1) {
+        this.comentario1 = comentario1;
+    }
+
+    public String getComentario2() {
+        return comentario2;
+    }
+
+    public void setComentario2(String comentario2) {
+        this.comentario2 = comentario2;
     }
 
     public String getFecha() {
@@ -98,6 +132,9 @@ public class Registro {
                 "nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", correo='" + correo + '\'' +
+                ", idMachine='" + idMachine + '\'' +
+                ", comentario1='" + comentario1 + '\'' +
+                ", comentario2='" + comentario2 + '\'' +
                 ", fecha='" + fecha + '\'' +
                 ", medioPago='" + medioPago + '\'' +
                 ", tipoPago='" + tipoPago + '\'' +
