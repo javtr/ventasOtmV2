@@ -22,8 +22,6 @@ public class TipoPagoServiceImp implements TipoPagoService {
         //comprobar si se envian los datos necesarios
         if(tipoPago.getTipoPago()==null|| tipoPago.getTipoPago().equals("")){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"tipoPago faltante");
-        }else if(tipoPago.getCuotas()==null||tipoPago.getCuotas()<0){
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"cuotas faltante");
         }
 
         return tipoPagoRepository.save(tipoPago);
@@ -56,8 +54,6 @@ public class TipoPagoServiceImp implements TipoPagoService {
         //comprobar si se envian los datos necesarios
         if(tipoPago.getTipoPago()==null|| tipoPago.getTipoPago().equals("")){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"nombre faltante");
-        }else if(tipoPago.getCuotas()==null||tipoPago.getCuotas()<0){
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"correo faltante");
         }
 
         tipoPagoRepository.save(tipoPago);

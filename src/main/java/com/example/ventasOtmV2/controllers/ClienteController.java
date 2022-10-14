@@ -52,4 +52,12 @@ public class ClienteController {
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad eliminada");
         return response;
     }
+
+    @GetMapping("/get-name/{name}")
+    public ResponseEntity<List<Cliente>> getClienteName(@PathVariable String name ){
+        System.out.println(name);
+        return ResponseEntity.ok(clienteService.getClienteByName(name)) ;
+    }
+
+
 }

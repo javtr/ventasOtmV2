@@ -6,6 +6,9 @@ import java.util.Set;
 
 public class Registro {
 
+    private Integer clienteid;
+
+    private boolean clienteEx;
     private String nombre;
     private String apellido;
     private String correo;
@@ -23,8 +26,9 @@ public class Registro {
     private Integer cuotas;
     private List<ProductoComprado> productoComprado;
 
-
-    public Registro(String nombre, String apellido, String correo, String idMachine, String comentario1, String comentario2, String fecha, String medioPago, String tipoPago, Integer cuotas, List<ProductoComprado> productoComprado) {
+    public Registro(Integer clienteid, boolean clienteEx, String nombre, String apellido, String correo, String idMachine, String comentario1, String comentario2, String fecha, String medioPago, String tipoPago, Integer cuotas, List<ProductoComprado> productoComprado) {
+        this.clienteid = clienteid;
+        this.clienteEx = clienteEx;
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
@@ -36,6 +40,23 @@ public class Registro {
         this.tipoPago = tipoPago;
         this.cuotas = cuotas;
         this.productoComprado = productoComprado;
+    }
+
+
+    public Integer getClienteid() {
+        return clienteid;
+    }
+
+    public void setClienteid(Integer clienteid) {
+        this.clienteid = clienteid;
+    }
+
+    public boolean isClienteEx() {
+        return clienteEx;
+    }
+
+    public void setClienteEx(boolean clienteEx) {
+        this.clienteEx = clienteEx;
     }
 
     public String getNombre() {
@@ -129,7 +150,9 @@ public class Registro {
     @Override
     public String toString() {
         return "Registro{" +
-                "nombre='" + nombre + '\'' +
+                "clienteid=" + clienteid +
+                ", clienteEx=" + clienteEx +
+                ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", correo='" + correo + '\'' +
                 ", idMachine='" + idMachine + '\'' +

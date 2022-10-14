@@ -81,4 +81,13 @@ public class ClienteServiceImp implements ClienteService{
         }
 
     }
+
+    @Override
+    public List<Cliente> getClienteByName(String nombre) {
+
+        return clienteRepository.findClienteByName(nombre);
+    }
+
+
+
 }

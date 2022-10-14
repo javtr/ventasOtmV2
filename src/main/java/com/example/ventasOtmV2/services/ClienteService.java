@@ -9,5 +9,6 @@ public interface ClienteService {
     public List<Cliente> getAllClientes();
     public void updateClientes(Cliente cliente);
     public void deleteClientes(Integer id);
+    public List<Cliente> getClienteByName(String name);
 
 }

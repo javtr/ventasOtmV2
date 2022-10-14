@@ -15,7 +15,6 @@ public class TipoPago {
     private Integer id;
 
     private String tipoPago;
-    private Integer cuotas;
 
     @OneToMany(mappedBy = "tipoPagoFactura",fetch = FetchType.LAZY)
     @JsonIgnore
@@ -40,13 +39,6 @@ public class TipoPago {
         this.tipoPago = tipoPago;
     }
 
-    public Integer getCuotas() {
-        return cuotas;
-    }
-
-    public void setCuotas(Integer cuotas) {
-        this.cuotas = cuotas;
-    }
 
     public Set<Factura> getFacturas() {
         return facturas;
@@ -61,7 +53,6 @@ public class TipoPago {
         return "TipoPago{" +
                 "id=" + id +
                 ", tipoPago='" + tipoPago + '\'' +
-                ", cuotas=" + cuotas +
                 ", facturas=" + facturas +
                 '}';
     }

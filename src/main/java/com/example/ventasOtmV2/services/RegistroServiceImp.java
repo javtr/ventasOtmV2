@@ -50,9 +50,20 @@ public class RegistroServiceImp implements RegistroService{
 
         System.out.println(registro);
 
+
         //Cliente
-        Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo(), registro.getIdMachine(), registro.getComentario1(), registro.getComentario2());
-        Integer idCliente = (clienteService.saveCliente(regCliente)).getId();
+
+        Integer idCliente = 0;
+
+        if(!registro.isClienteEx()){
+            Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo(), registro.getIdMachine(), registro.getComentario1(), registro.getComentario2());
+            idCliente = (clienteService.saveCliente(regCliente)).getId();
+        }else{
+            idCliente = registro.getClienteid();
+        }
+
+        System.out.println(idCliente);
+
 
         //medio pago
         List<MedioPago> listaPagos =  medioPagoService.getAll();
