@@ -11,7 +11,4 @@ public interface RegistroService {
 
     public void saveRegistro(Registro registro) throws ParseException;
 
-
-
-
 }
