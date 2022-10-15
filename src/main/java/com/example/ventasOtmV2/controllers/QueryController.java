@@ -24,4 +24,10 @@ public class QueryController {
         return queryService.queryCliente();
     }
 
+    @GetMapping("/factura/{id}")
+    public List getFacturaCliente(@PathVariable Integer id ) {
+        return queryService.queryFacturasCliente(id);
+    }
+
+
 }

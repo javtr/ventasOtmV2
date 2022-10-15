@@ -28,4 +28,14 @@ public class QueryServiceImp implements QueryService{
 
         return (myQuery.getResultList());
     }
+
+    @Override
+    public List queryFacturasCliente(Integer id) {
+        String jpql = "SELECT f FROM Factura f WHERE f.clienteFactura.id=:id";
+        javax.persistence.Query myQuery = em.createQuery(jpql);
+        myQuery.setParameter("id", id);
+
+        return (myQuery.getResultList());
+
+    }
 }

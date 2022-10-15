@@ -6,5 +6,7 @@ public interface QueryService {
 
     public List queryCliente();
 
+    public List queryFacturasCliente(Integer id);
+
 
 }
