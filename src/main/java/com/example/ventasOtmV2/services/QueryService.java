@@ -1,4 +1,6 @@
 package com.example.ventasOtmV2.services;
+import com.example.ventasOtmV2.models.FormPagos;
+
 import java.util.List;
 
 public interface QueryService {
@@ -11,6 +13,8 @@ public interface QueryService {
     public List queryPagosFactura(Integer id);
 
     public List queryComprasFactura(Integer id);
+
+    public List queryPagosFechas(FormPagos formPagos);
 
 
 }
