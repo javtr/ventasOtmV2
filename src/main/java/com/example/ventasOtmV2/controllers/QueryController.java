@@ -30,4 +30,16 @@ public class QueryController {
     }
 
 
+    @GetMapping("/pagos/{id}")
+    public List getPagosFactura(@PathVariable Integer id ) {
+        return queryService.queryPagosFactura(id);
+    }
+
+    @GetMapping("/compras/{id}")
+    public List getComprasFactura(@PathVariable Integer id ) {
+        return queryService.queryComprasFactura(id);
+    }
+
+
+
 }

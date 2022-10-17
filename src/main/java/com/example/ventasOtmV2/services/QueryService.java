@@ -8,5 +8,9 @@ public interface QueryService {
 
     public List queryFacturasCliente(Integer id);
 
+    public List queryPagosFactura(Integer id);
+
+    public List queryComprasFactura(Integer id);
+
 
 }
