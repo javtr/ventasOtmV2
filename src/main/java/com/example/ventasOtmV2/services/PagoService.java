@@ -12,6 +12,10 @@ public interface PagoService {
 
     public List<Pago> getAll();
     public void update(Pago pago);
+
+    public void updateEstado(Pago pago);
+
+
     public void delete(Integer id);
 
 }

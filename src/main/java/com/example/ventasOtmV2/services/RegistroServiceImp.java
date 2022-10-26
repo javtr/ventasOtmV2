@@ -51,7 +51,6 @@ public class RegistroServiceImp implements RegistroService{
     @Override
     public void saveRegistro(Registro registro) throws ParseException {
 
-        System.out.println(registro);
 
 
         //Cliente
@@ -59,13 +58,11 @@ public class RegistroServiceImp implements RegistroService{
         Integer idCliente = 0;
 
         if(!registro.isClienteEx()){
-            Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo(), registro.getIdMachine(), registro.getComentario1(), registro.getComentario2());
+            Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo(), registro.getIdMachine(), registro.getComentario1(), registro.getComentario2(),1);
             idCliente = (clienteService.saveCliente(regCliente)).getId();
         }else{
             idCliente = registro.getClienteid();
         }
-
-        System.out.println(idCliente);
 
 
         //medio pago
@@ -163,15 +160,15 @@ public class RegistroServiceImp implements RegistroService{
                 //aumentar un mes y setear el dia del mes a primero
 
                 Calendar fechaDesembolso = cal;
-                fechaDesembolso.add(Calendar.MONTH, 1);
+                fechaDesembolso.add(Calendar.MONTH, 2);
                 fechaDesembolso.set(Calendar.DAY_OF_MONTH, 1);
 
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 String dateCuotaDes = sdf2.format(fechaDesembolso.getTime());
-
+                double pagoFee = pagoCuota-(pagoCuota*0.039)-0.3-(pagoCuota*0.047);
 
                 //guardar cada pago
-                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,(pagoCuota*feeCuota),facturaSend);
+                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,1,facturaSend);
                 System.out.println(pagoService.save(pago));
 
 
@@ -182,7 +179,7 @@ public class RegistroServiceImp implements RegistroService{
 
 
             //guardar el pago unico
-            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),facturaSend);
+            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),1,facturaSend);
             System.out.println(pagoService.save(pago));
 
 

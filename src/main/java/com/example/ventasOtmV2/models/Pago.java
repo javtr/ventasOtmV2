@@ -25,6 +25,9 @@ public class Pago {
     private double valorPago;
     private double valorPagoNeto;
 
+    private Integer estado;
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id",nullable = false)
     private Factura facturaPago;
@@ -33,12 +36,17 @@ public class Pago {
     public Pago() {
     }
 
-    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Factura facturaPago) {
+    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, Factura facturaPago) {
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
         this.facturaPago = facturaPago;
+    }
+
+    public Pago(Integer id, Integer estado) {
+        this.id = id;
+        this.estado = estado;
     }
 
     public String getFechaDesembolso() {
@@ -47,6 +55,14 @@ public class Pago {
 
     public void setFechaDesembolso(String fechaDesembolso) {
         this.fechaDesembolso = fechaDesembolso;
+    }
+
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -83,7 +99,6 @@ public class Pago {
 
 
 
-
     public Factura getFacturaPago() {
         return facturaPago;
     }
@@ -101,8 +116,8 @@ public class Pago {
                 ", fechaDesembolso=" + fechaDesembolso +
                 ", valorPago=" + valorPago +
                 ", valorPagoNeto=" + valorPagoNeto +
+                ", estado=" + estado +
                 ", facturaPago=" + facturaPago +
-
                 '}';
     }
 

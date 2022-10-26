@@ -60,4 +60,13 @@ public class PagoController {
         return response;
     }
 
+    @PutMapping("/editState")
+    public ResponseEntity<String> editState(@RequestBody Pago pago ){
+        ResponseEntity<String> response;
+
+        pagoService.updateEstado(pago); ;
+        response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
+        return response;
+    }
+
 }

@@ -27,6 +27,9 @@ public class Cliente {
 
     private String comentario2;
 
+    private Integer estado;
+
+
 
 
     @OneToMany(mappedBy = "clienteCompra",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -42,13 +45,14 @@ public class Cliente {
     }
 
 
-    public Cliente(String nombre, String apellido, String correo, String idMachine, String comentario1, String comentario2) {
+    public Cliente(String nombre, String apellido, String correo, String idMachine, String comentario1, String comentario2, Integer estado) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
         this.idMachine = idMachine;
         this.comentario1 = comentario1;
         this.comentario2 = comentario2;
+        this.estado = estado;
     }
 
     public Cliente(Integer id) {
@@ -127,6 +131,14 @@ public class Cliente {
         this.facturas = facturas;
     }
 
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
         return "Cliente{" +
@@ -139,6 +151,7 @@ public class Cliente {
                 ", comentario2='" + comentario2 + '\'' +
                 ", compras=" + compras +
                 ", facturas=" + facturas +
+                ", estado=" + estado +
                 '}';
     }
 }

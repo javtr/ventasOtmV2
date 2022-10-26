@@ -61,15 +61,41 @@ public class PagoServiceImp implements PagoService {
         }
 
         //comprobar si se envian los datos necesarios
-        if(pago.getFechaPago()==null|| pago.getFechaPago().equals("")){
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"FechaPago faltante");
-        }else if(pago.getValorPago()==0){
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"ValorPago faltante");
-        }else if(pago.getValorPagoNeto()==0){
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"ValorPagoNeto faltante");
+
+        if (pago.getFechaPago() == null || pago.getFechaPago().equals("")) {
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST, "FechaPago faltante");
+        } else if (pago.getValorPago() == 0) {
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST, "ValorPago faltante");
+        } else if (pago.getValorPagoNeto() == 0) {
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST, "ValorPagoNeto faltante");
         }
 
         pagoRepository.save(pago);
+    }
+
+    @Override
+    public void updateEstado(Pago pago) {
+
+        Pago tempPago = null;
+
+        //comprobar si existe la entidad
+        if(!pagoRepository.existsById(pago.getId())){
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
+        }else{
+            tempPago = pagoRepository.findById(pago.getId()).get();
+        }
+
+        //comprobar si se envia el estado
+
+        System.out.println(pago);
+
+        if (pago.getEstado() == 0) {
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST, "estado faltante");
+        }
+
+        tempPago.setEstado(pago.getEstado());
+
+        pagoRepository.save(tempPago);
     }
 
     @Override

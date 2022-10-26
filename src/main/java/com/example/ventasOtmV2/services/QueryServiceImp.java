@@ -23,7 +23,7 @@ public class QueryServiceImp implements QueryService{
     @Override
     public List queryCliente() {
 
-        String jpql = "SELECT c.id, c.nombre, c.apellido, c.correo, c.idMachine, sum(f.valorCompra) FROM Factura f INNER JOIN Cliente c ON f.clienteFactura.id=c.id GROUP BY c.id";
+        String jpql = "SELECT c.id, c.nombre, c.apellido, c.correo, c.idMachine, sum(f.valorCompra), c.estado FROM Factura f INNER JOIN Cliente c ON f.clienteFactura.id=c.id GROUP BY c.id";
         javax.persistence.Query myQuery = em.createQuery(jpql);
 
         return (myQuery.getResultList());
