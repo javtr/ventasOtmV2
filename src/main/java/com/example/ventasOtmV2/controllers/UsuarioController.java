@@ -20,6 +20,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 
+
     @PostMapping("/save")
     public ResponseEntity<Usuario> add(@RequestBody Usuario usuario){
         return ResponseEntity.ok(usuarioService.registrarUsuario(usuario)) ;
@@ -54,15 +55,5 @@ public class UsuarioController {
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad eliminada");
         return response;
     }
-
-    @PutMapping("/verificar")
-    public String verificarUsuario(@RequestBody Usuario usuario ){
-        if(usuarioService.verificarUsuario(usuario)){
-            return "ok";
-        }else {
-            return "no";
-        }
-    }
-
 
 }

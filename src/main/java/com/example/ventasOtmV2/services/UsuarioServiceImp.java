@@ -1,5 +1,6 @@
 package com.example.ventasOtmV2.services;
 
+import com.example.ventasOtmV2.Utils.JWTUtil;
 import com.example.ventasOtmV2.exceptions.RequestException;
 import com.example.ventasOtmV2.models.Cliente;
 import com.example.ventasOtmV2.models.Usuario;
@@ -23,6 +24,9 @@ public class UsuarioServiceImp implements UsuarioService{
 
     @PersistenceContext
     EntityManager em = null;
+
+    @Autowired
+    private JWTUtil jwtUtil;
 
 
     @Override
@@ -57,14 +61,39 @@ public class UsuarioServiceImp implements UsuarioService{
     }
 
     @Override
-    public boolean verificarUsuario(Usuario usuario) {
-        String jpql = "SELECT u FROM Usuario u WHERE u.user=:id AND u.password=:password";
+    public Usuario verificarUsuario(Usuario usuario) {
+        String jpql = "SELECT u FROM Usuario u WHERE u.user=:user ";
         List<Usuario> returnUser = em.createQuery(jpql)
-            .setParameter("id", usuario.getUser())
-            .setParameter("password", usuario.getPassword())
+            .setParameter("user", usuario.getUser())
             .getResultList();
 
-        return !returnUser.isEmpty();
+        //verificar si el usuario existe
+        if (returnUser.isEmpty()) {
+            return null;
+        }
 
+        //obtener el password del usuario
+        String passwordHashed = returnUser.get(0).getPassword();
+
+        Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
+
+        //si coinciden los password retornar el usuario
+        if (argon2.verify(passwordHashed, usuario.getPassword())) {
+            return returnUser.get(0);
+        }
+        //si no coinciden retornar null
+        return null;
+
+    }
+
+    @Override
+    public boolean verificarToken(String token) {
+        String usuarioId = jwtUtil.getKey(token);
+        String usuarioValue = jwtUtil.getValue(token);
+
+        System.out.println("key: "+ usuarioId );
+        System.out.println("value: "+ usuarioValue );
+
+        return usuarioId != null;
     }
 }

@@ -12,6 +12,8 @@ public interface UsuarioService {
     public List<Usuario> getAllUsuarios();
     public void updateUsuario(Usuario usuario);
     public void deleteUsuario(Integer id);
-    public boolean verificarUsuario(Usuario usuario);
+    public Usuario verificarUsuario(Usuario usuario);
+
+    public boolean verificarToken(String token);
 
 }
