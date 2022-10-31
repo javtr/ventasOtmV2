@@ -16,4 +16,12 @@ public interface UsuarioService {
 
     public boolean verificarToken(String token);
 
+    public String verificarId(String token);
+
+    public String verificarRol(String token);
+
+
+
+
+
 }

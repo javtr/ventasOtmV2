@@ -89,11 +89,35 @@ public class UsuarioServiceImp implements UsuarioService{
     @Override
     public boolean verificarToken(String token) {
         String usuarioId = jwtUtil.getKey(token);
-        String usuarioValue = jwtUtil.getValue(token);
-
-        System.out.println("key: "+ usuarioId );
-        System.out.println("value: "+ usuarioValue );
 
         return usuarioId != null;
     }
+
+
+    @Override
+    public String verificarId(String token) {
+        String usuarioId = jwtUtil.getKey(token);
+
+        if (usuarioId != null || usuarioId != ""){
+            return usuarioId;
+        }
+        else{
+            return "";
+        }
+
+    }
+
+    @Override
+    public String verificarRol(String token) {
+        String usuarioValue = jwtUtil.getValue(token);
+
+        if (usuarioValue != null || usuarioValue != ""){
+            return usuarioValue;
+        }
+        else{
+            return "";
+        }
+
+    }
+
 }

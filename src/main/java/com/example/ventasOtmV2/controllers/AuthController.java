@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/user")
 @CrossOrigin
 public class AuthController {
 
@@ -21,18 +21,13 @@ public class AuthController {
 
 
     @PostMapping(value = "/login")
-    public String login(@RequestBody Usuario usuario,@RequestHeader(value="Authorization") String token) {
+    public String login(@RequestBody Usuario usuario) {
 
         Usuario usuarioLogueado = usuarioService.verificarUsuario(usuario);
 
-        System.out.println("user: " + usuarioLogueado);
-        System.out.println("token: " + token);
-
-        usuarioService.verificarToken(token);
-
 
         if (usuarioLogueado != null) {
-            String tokenJwt = jwtUtil.create(String.valueOf(usuarioLogueado.getId()), usuarioLogueado.getUser());
+            String tokenJwt = jwtUtil.create(String.valueOf(usuarioLogueado.getId()), String.valueOf(usuarioLogueado.getRol()));
             return tokenJwt;
         }
         return "auth fail";

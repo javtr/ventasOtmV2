@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/user")
 @CrossOrigin
 public class UsuarioController {
 
@@ -55,5 +55,28 @@ public class UsuarioController {
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad eliminada");
         return response;
     }
+
+
+    @GetMapping("/get-rol")
+    public String getRol(@RequestHeader(value="Authorization") String token){
+        return usuarioService.verificarRol(token);
+    }
+
+    @GetMapping("/getUserByToken")
+    public ResponseEntity<Usuario> getUserToken(@RequestHeader(value="Authorization") String token) {
+
+        if (usuarioService.verificarToken(token)) {
+
+            return ResponseEntity.ok(usuarioService.getUsuario(Integer.valueOf(usuarioService.verificarId(token))));
+
+        } else {
+            return null;
+
+        }
+    }
+
+
+
+
 
 }
