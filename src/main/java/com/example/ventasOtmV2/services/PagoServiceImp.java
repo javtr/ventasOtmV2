@@ -38,12 +38,16 @@ public class PagoServiceImp implements PagoService {
     @Override
     public Pago get(Integer id) {
 
+        /*
         //comprobar si existe la entidad
         if(!pagoRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return pagoRepository.findById(id).get();
+        */
+
+        return null;
     }
 
 
@@ -76,6 +80,8 @@ public class PagoServiceImp implements PagoService {
     @Override
     public void updateEstado(Pago pago) {
 
+
+        /*
         Pago tempPago = null;
 
         //comprobar si existe la entidad
@@ -96,6 +102,9 @@ public class PagoServiceImp implements PagoService {
         tempPago.setEstado(pago.getEstado());
 
         pagoRepository.save(tempPago);
+
+        */
+
     }
 
     @Override

@@ -4,12 +4,16 @@ import com.example.ventasOtmV2.Utils.JWTUtil;
 import com.example.ventasOtmV2.models.Usuario;
 import com.example.ventasOtmV2.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
+//@Configuration
+//@ComponentScan("com.example.ventasOtmV2.services")
 public class AuthController {
 
 

@@ -5,6 +5,8 @@ import com.example.ventasOtmV2.models.Usuario;
 import com.example.ventasOtmV2.services.ClienteService;
 import com.example.ventasOtmV2.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +16,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @CrossOrigin
+//@Configuration
+//@ComponentScan("com.example.ventasOtmV2.Utils")
+//@ComponentScan("com.example.ventasOtmV2.Services")
 public class UsuarioController {
 
     @Autowired
@@ -26,10 +31,14 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.registrarUsuario(usuario)) ;
     }
 
+
+
     @GetMapping("/get/{id}")
     public ResponseEntity<Usuario> getUsuario(@PathVariable Integer id ){
         return ResponseEntity.ok(usuarioService.getUsuario(id)) ;
     }
+
+
 
     @GetMapping("/get-all")
     public ResponseEntity<List<Usuario>> getAllUsuarios(){

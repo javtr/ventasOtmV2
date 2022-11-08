@@ -47,12 +47,17 @@ public class FacturaServiceImp implements FacturaService {
     @Override
     public Factura get(Integer id) {
 
+        /*
         //comprobar si existe la entidad
         if(!facturaRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return facturaRepository.findById(id).get();
+        */
+        return null;
+
+
     }
 
     @Override
@@ -98,13 +103,17 @@ public class FacturaServiceImp implements FacturaService {
     @Override
     public Set<Pago> getPagos(Integer id) {
 
+/*
+
         //comprobar si existe la entidad
         if(!facturaRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return facturaRepository.findById(id).get().getPagos();
+
+
+*/
+        return null;
     }
-
-
 }

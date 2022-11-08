@@ -16,15 +16,29 @@ import java.util.Date;
 
 
 @Component
+
 public class JWTUtil {
 
-    @Value("${security.jwt.secret}")
+    //@Value("${security.jwt.secret}")
+    //private String key;
+
+
+    //@Value("${security.jwt.issuer}")
+    //private String issuer;
+
+    //@Value("${security.jwt.ttlMillis}")
+    //private long ttlMillis;
+
+
+
+    @Value("sdflkjfeljsdf")
     private String key;
 
-    @Value("${security.jwt.issuer}")
+
+    @Value("Main")
     private String issuer;
 
-    @Value("${security.jwt.ttlMillis}")
+    @Value("604800000")
     private long ttlMillis;
 
     private final Logger log = LoggerFactory
