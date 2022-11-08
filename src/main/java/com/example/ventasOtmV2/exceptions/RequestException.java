@@ -1,5 +1,6 @@
 package com.example.ventasOtmV2.exceptions;
 
+//import lombok.Data;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
 
