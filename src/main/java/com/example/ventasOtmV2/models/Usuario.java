@@ -16,6 +16,10 @@ public class Usuario {
     private String password;
     private String rol;
 
+    @Transient
+    private String token;
+
+
     public Usuario() {
     }
 
@@ -35,6 +39,21 @@ public class Usuario {
     public Usuario(String user, String password) {
         this.user = user;
         this.password = password;
+    }
+
+    public Usuario(String user, Integer id, String rol, String token) {
+        this.user = user;
+        this.id = id;
+        this.rol = rol;
+        this.token = token;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 
     public Integer getId() {
@@ -77,6 +96,7 @@ public class Usuario {
                 ", user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 ", rol='" + rol + '\'' +
+                ", token='" + token + '\'' +
                 '}';
     }
 }

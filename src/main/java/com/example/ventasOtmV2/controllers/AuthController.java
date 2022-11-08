@@ -21,16 +21,23 @@ public class AuthController {
 
 
     @PostMapping(value = "/login")
-    public String login(@RequestBody Usuario usuario) {
+    public Usuario login(@RequestBody Usuario usuario) {
+
+        System.out.println("login --------------");
+        System.out.println(usuario);
 
         Usuario usuarioLogueado = usuarioService.verificarUsuario(usuario);
+
+        System.out.println("logueado");
+        System.out.println(usuarioLogueado);
 
 
         if (usuarioLogueado != null) {
             String tokenJwt = jwtUtil.create(String.valueOf(usuarioLogueado.getId()), String.valueOf(usuarioLogueado.getRol()));
-            return tokenJwt;
+            Usuario returnUser = new Usuario(usuarioLogueado.getUser(), usuarioLogueado.getId(), usuarioLogueado.getRol(), tokenJwt);
+            return returnUser;
         }
-        return "auth fail";
+        return null;
     }
 
 
