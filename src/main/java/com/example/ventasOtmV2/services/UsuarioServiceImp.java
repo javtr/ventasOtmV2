@@ -9,8 +9,6 @@ import com.example.ventasOtmV2.repository.UsuarioRepository;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-
 @Service
-//@Configuration
-//@ComponentScan("com.example.ventasOtmV2.Utils")
-
 public class UsuarioServiceImp implements UsuarioService{
 
     @Autowired
@@ -31,8 +25,8 @@ public class UsuarioServiceImp implements UsuarioService{
     @PersistenceContext
     EntityManager em = null;
 
-    //@Autowired
-    //private JWTUtil jwtUtil;
+    @Autowired
+    private JWTUtil jwtUtil;
 
 
     @Override
@@ -45,26 +39,10 @@ public class UsuarioServiceImp implements UsuarioService{
         return usuarioRepository.save(usuario);
     }
 
-
-
     @Override
     public Usuario getUsuario(Integer id) {
-
-        /*
-        if(!usuarioRepository.existsById(id)) {
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST, "Entidad no existe");
-        }
         return usuarioRepository.findById(id).get();
-        */
-
-        return null;
     }
-
-
-
-
-
-
 
     @Override
     public List<Usuario> getAllUsuarios() {
@@ -108,21 +86,16 @@ public class UsuarioServiceImp implements UsuarioService{
 
     }
 
-
     @Override
     public boolean verificarToken(String token) {
-        //String usuarioId = jwtUtil.getKey(token);
-        //return usuarioId != null;
+        String usuarioId = jwtUtil.getKey(token);
 
-
-        return false;
+        return usuarioId != null;
     }
 
 
     @Override
     public String verificarId(String token) {
-
-        /*
         String usuarioId = jwtUtil.getKey(token);
 
         if (usuarioId != null || usuarioId != ""){
@@ -131,26 +104,20 @@ public class UsuarioServiceImp implements UsuarioService{
         else{
             return "";
         }
-        */
-
-        return "";
 
     }
 
     @Override
     public String verificarRol(String token) {
-
-        /*
         String usuarioValue = jwtUtil.getValue(token);
+
         if (usuarioValue != null || usuarioValue != ""){
             return usuarioValue;
         }
         else{
             return "";
         }
-        */
 
-        return "";
     }
 
 }

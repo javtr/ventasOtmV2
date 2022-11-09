@@ -32,17 +32,12 @@ public class ProductoServiceImp implements ProductoService{
     @Override
     public Producto get(Integer id) {
 
-        /*
         //comprobar si existe la entidad
         if(!productoRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return productoRepository.findById(id).get();
-
-        */
-        return null;
-
     }
 
     @Override

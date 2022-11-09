@@ -5,10 +5,13 @@ import com.example.ventasOtmV2.models.Cliente;
 import com.example.ventasOtmV2.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteServiceImp implements ClienteService{
@@ -31,17 +34,12 @@ public class ClienteServiceImp implements ClienteService{
     @Override
     public Cliente getCliente(Integer id) {
 
-        /*
-
         //comprobar si existe la entidad
         if(!clienteRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return clienteRepository.findById(id).get();
-        */
-        return null;
-
     }
 
     @Override

@@ -32,17 +32,12 @@ public class CompraServiceImp implements CompraService{
     @Override
     public Compra get(Integer id) {
 
-        /*
-
         //comprobar si existe la entidad
         if(!compraRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return compraRepository.findById(id).get();
-        */
-        return null;
-
     }
 
     @Override

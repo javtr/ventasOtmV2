@@ -30,18 +30,12 @@ public class TipoPagoServiceImp implements TipoPagoService {
     @Override
     public TipoPago get(Integer id) {
 
-
-        /*
         //comprobar si existe la entidad
         if(!tipoPagoRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return tipoPagoRepository.findById(id).get();
-        */
-        return null;
-
-
     }
 
     @Override

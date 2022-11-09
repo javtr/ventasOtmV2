@@ -30,16 +30,12 @@ public class MedioPagoServiceImp implements MedioPagoService {
     @Override
     public MedioPago get(Integer id) {
 
-        /*
         //comprobar si existe la entidad
         if(!medioPagoRepository.existsById(id)){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
         }
 
         return medioPagoRepository.findById(id).get();
-        */
-
-        return null;
     }
 
     @Override
