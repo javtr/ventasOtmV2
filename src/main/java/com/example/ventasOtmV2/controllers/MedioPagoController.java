@@ -20,7 +20,6 @@ public class MedioPagoController {
 
     @PostMapping("/save")
     public ResponseEntity<MedioPago> add(@RequestBody MedioPago medioPago){
-        System.out.println(medioPago);
         return ResponseEntity.ok(medioPagoService.save(medioPago)) ;
     }
 

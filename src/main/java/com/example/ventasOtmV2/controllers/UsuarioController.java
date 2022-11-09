@@ -65,15 +65,13 @@ public class UsuarioController {
     @GetMapping("/getUserByToken")
     public ResponseEntity<Usuario> getUserToken(@RequestHeader(value="Authorization") String token) {
 
-        if(!token.equals("")) {
-            if (usuarioService.verificarToken(token)) {
-                return ResponseEntity.ok(usuarioService.getUsuario(Integer.valueOf(usuarioService.verificarId(token))));
-            } else {
-                return null;
-            }
+        if (usuarioService.verificarToken(token)) {
 
-        }else{
+            return ResponseEntity.ok(usuarioService.getUsuario(Integer.valueOf(usuarioService.verificarId(token))));
+
+        } else {
             return null;
+
         }
     }
 
