@@ -14,7 +14,8 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/factura")
-@CrossOrigin
+@CrossOrigin()
+//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class FacturaController {
 
     @Autowired

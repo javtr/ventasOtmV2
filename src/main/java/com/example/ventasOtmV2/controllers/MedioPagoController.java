@@ -11,7 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/medio-pago")
-@CrossOrigin
+@CrossOrigin()
+//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class MedioPagoController {
 
     @Autowired

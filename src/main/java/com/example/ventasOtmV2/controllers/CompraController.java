@@ -13,7 +13,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/compra")
-@CrossOrigin
+@CrossOrigin()
+//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class CompraController {
 
     @Autowired

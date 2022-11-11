@@ -11,7 +11,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/cliente")
-@CrossOrigin
+@CrossOrigin()
+//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class ClienteController {
 
     @Autowired

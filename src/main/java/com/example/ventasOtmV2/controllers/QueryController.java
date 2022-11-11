@@ -18,7 +18,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/query")
-@CrossOrigin(origins="http://localhost:3000")
+@CrossOrigin()
+//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class QueryController {
 
     @Autowired
