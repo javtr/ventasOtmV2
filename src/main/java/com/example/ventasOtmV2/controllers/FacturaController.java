@@ -5,18 +5,21 @@ import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.services.FacturaService;
 import com.example.ventasOtmV2.services.PagoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/factura")
-@CrossOrigin()
-//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class FacturaController {
+
 
     @Autowired
     private FacturaService facturaService;

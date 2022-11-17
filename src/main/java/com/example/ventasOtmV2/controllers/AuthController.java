@@ -4,14 +4,26 @@ import com.example.ventasOtmV2.Utils.JWTUtil;
 import com.example.ventasOtmV2.models.Usuario;
 import com.example.ventasOtmV2.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @RestController
+@CrossOrigin
 @RequestMapping("/user")
-@CrossOrigin()
-//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class AuthController {
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
+            }
+        };
+    }
 
 
     @Autowired

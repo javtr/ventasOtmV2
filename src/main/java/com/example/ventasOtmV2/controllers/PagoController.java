@@ -6,17 +6,20 @@ import com.example.ventasOtmV2.models.TipoPago;
 import com.example.ventasOtmV2.services.PagoService;
 import com.example.ventasOtmV2.services.TipoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/pago")
-@CrossOrigin()
-//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class PagoController {
+
 
     @Autowired
     private PagoService pagoService;

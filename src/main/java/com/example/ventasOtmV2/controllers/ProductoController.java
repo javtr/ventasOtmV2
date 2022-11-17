@@ -5,17 +5,20 @@ import com.example.ventasOtmV2.models.Producto;
 import com.example.ventasOtmV2.services.CompraService;
 import com.example.ventasOtmV2.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/producto")
-@CrossOrigin()
-//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class ProductoController {
+
 
     @Autowired
     private ProductoService productoService;

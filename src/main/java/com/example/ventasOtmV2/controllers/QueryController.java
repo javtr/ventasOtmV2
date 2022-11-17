@@ -17,15 +17,11 @@ import java.text.ParseException;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"https://ventasotmv2-production.up.railway.app","http://localhost:8080"})
 @RequestMapping("/query")
-@CrossOrigin()
-//@CrossOrigin(origins = "https://ventasotmv2-production.up.railway.app")
 public class QueryController {
 
-    @Autowired
-    private QueryService queryService;
-
-    /*
+/*
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -35,7 +31,13 @@ public class QueryController {
             }
         };
     }
+
 */
+
+    @Autowired
+    private QueryService queryService;
+
+
 
     @GetMapping("/clientes")
     public List getRegistro() {
