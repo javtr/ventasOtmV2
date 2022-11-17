@@ -5,16 +5,20 @@ import com.example.ventasOtmV2.models.Compra;
 import com.example.ventasOtmV2.services.ClienteService;
 import com.example.ventasOtmV2.services.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/compra")
 @CrossOrigin
+@RequestMapping("/compra")
 public class CompraController {
+
 
     @Autowired
     private CompraService compraService;
