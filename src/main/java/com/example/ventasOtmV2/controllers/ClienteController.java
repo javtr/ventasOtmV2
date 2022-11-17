@@ -3,16 +3,31 @@ package com.example.ventasOtmV2.controllers;
 import com.example.ventasOtmV2.models.Cliente;
 import com.example.ventasOtmV2.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/cliente")
 @CrossOrigin
+@RequestMapping("/cliente")
 public class ClienteController {
+
+/*
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
+            }
+        };
+    }
+*/
 
     @Autowired
     private ClienteService clienteService;
