@@ -87,7 +87,7 @@ public class PagoServiceImp implements PagoService {
 
         //comprobar si se envia el estado
 
-        System.out.println(pago);
+
 
         if (pago.getEstado() == 0) {
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST, "estado faltante");

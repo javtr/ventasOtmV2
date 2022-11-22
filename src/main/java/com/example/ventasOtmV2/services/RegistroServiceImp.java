@@ -52,13 +52,12 @@ public class RegistroServiceImp implements RegistroService{
     public void saveRegistro(Registro registro) throws ParseException {
 
 
-
         //Cliente
 
         Integer idCliente = 0;
 
         if(!registro.isClienteEx()){
-            Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo(), registro.getIdMachine(), registro.getComentario1(), registro.getComentario2(),1);
+            Cliente regCliente = new Cliente(registro.getNombre(),registro.getApellido(), registro.getCorreo(), registro.getIdMachine(), registro.getComentario1(), registro.getComentario2(),0);
             idCliente = (clienteService.saveCliente(regCliente)).getId();
         }else{
             idCliente = registro.getClienteid();
@@ -99,7 +98,7 @@ public class RegistroServiceImp implements RegistroService{
         }
 
         //factura
-        Factura factura = new Factura(registro.getFecha(),totalCompra,true,medioPagoService.get(idMedioPago),tipoPagoService.get(idTipoPago),clienteService.getCliente(idCliente));
+        Factura factura = new Factura(registro.getFecha(),totalCompra,0,medioPagoService.get(idMedioPago),tipoPagoService.get(idTipoPago),clienteService.getCliente(idCliente));
         Integer idFactura = (facturaService.save(factura)).getId();
         Factura facturaSend = new Factura(idFactura);
 
@@ -138,6 +137,8 @@ public class RegistroServiceImp implements RegistroService{
         Integer numeroCuotas = registro.getCuotas();
         double feeCuota = 0.9;
 
+
+
         if (tipoPagoReg.equals("cuotas") && numeroCuotas>1){
 
             String fechaPago = registro.getFecha();
@@ -168,10 +169,9 @@ public class RegistroServiceImp implements RegistroService{
                 double pagoFee = pagoCuota-(pagoCuota*0.039)-0.3-(pagoCuota*0.047);
 
                 //guardar cada pago
-                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,1,facturaSend);
-                System.out.println(pagoService.save(pago));
+                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,facturaSend);
 
-
+                pagoService.save(pago);
 
             }
 
@@ -179,11 +179,10 @@ public class RegistroServiceImp implements RegistroService{
 
 
             //guardar el pago unico
-            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),1,facturaSend);
-            System.out.println(pagoService.save(pago));
+            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),0,facturaSend);
 
 
-
+            pagoService.save(pago);
 
         }
 

@@ -27,7 +27,6 @@ public class FacturaController {
 
     @PostMapping("/save")
     public ResponseEntity<Factura> add(@RequestBody Factura factura){
-        System.out.println("fac-save: " + factura);
         return ResponseEntity.ok(facturaService.save(factura)) ;
     }
 
@@ -51,6 +50,18 @@ public class FacturaController {
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
         return response;
     }
+
+
+    @PutMapping("/editEstado/{id}")
+    public ResponseEntity<String> editEstado(@PathVariable Integer id){
+        ResponseEntity<String> response;
+
+        facturaService.updateDelete(id);
+
+        response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
+        return response;
+    }
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id ){

@@ -18,7 +18,7 @@ public class Factura {
     @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
     private String fechaCompra;
     private double valorCompra;
-    private boolean compraActiva;
+    private Integer compraActiva;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -46,7 +46,7 @@ public class Factura {
     public Factura() {
     }
 
-    public Factura(String fechaCompra, double valorCompra, boolean compraActiva, MedioPago medioPagoFactura, TipoPago tipoPagoFactura, Cliente clienteFactura) {
+    public Factura(String fechaCompra, double valorCompra, Integer compraActiva, MedioPago medioPagoFactura, TipoPago tipoPagoFactura, Cliente clienteFactura) {
         this.fechaCompra = fechaCompra;
         this.valorCompra = valorCompra;
         this.compraActiva = compraActiva;
@@ -83,11 +83,11 @@ public class Factura {
         this.valorCompra = valorCompra;
     }
 
-    public boolean isCompraActiva() {
+    public Integer isCompraActiva() {
         return compraActiva;
     }
 
-    public void setCompraActiva(boolean compraActiva) {
+    public void setCompraActiva(Integer compraActiva) {
         this.compraActiva = compraActiva;
     }
 
@@ -113,6 +113,10 @@ public class Factura {
 
     public void setMedioPagoFactura(MedioPago medioPagoFactura) {
         this.medioPagoFactura = medioPagoFactura;
+    }
+
+    public Integer getCompraActiva() {
+        return compraActiva;
     }
 
     public TipoPago getTipoPagoFactura() {

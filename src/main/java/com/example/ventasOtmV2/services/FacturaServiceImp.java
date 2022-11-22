@@ -1,6 +1,7 @@
 package com.example.ventasOtmV2.services;
 
 import com.example.ventasOtmV2.exceptions.RequestException;
+import com.example.ventasOtmV2.models.Cliente;
 import com.example.ventasOtmV2.models.Factura;
 import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.repository.ClienteRepository;
@@ -70,13 +71,29 @@ public class FacturaServiceImp implements FacturaService {
 
         //comprobar si se envian los datos necesarios
         if(factura.getFechaCompra()==null|| factura.getFechaCompra().equals("")){
-            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"FechaPago faltante");
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"getFechaCompra faltante");
         }else if(factura.getValorCompra()==0){
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"ValorPago faltante");
         }
 
         facturaRepository.save(factura);
     }
+
+
+    @Override
+    public void updateDelete(Integer id) {
+
+        //comprobar si existe la entidad
+        if(!facturaRepository.existsById(id)){
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
+        }
+
+        //obtener, cambiar estado y guardar
+        Factura factura = facturaRepository.findById(id).get();
+        factura.setCompraActiva(2);
+        facturaRepository.save(factura);
+    }
+
 
     @Override
     public void delete(Integer id) {

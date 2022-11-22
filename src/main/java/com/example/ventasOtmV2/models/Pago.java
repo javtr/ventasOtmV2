@@ -36,11 +36,13 @@ public class Pago {
     public Pago() {
     }
 
+
     public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, Factura facturaPago) {
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
+        this.estado = estado;
         this.facturaPago = facturaPago;
     }
 
