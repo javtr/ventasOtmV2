@@ -12,6 +12,9 @@ public interface FacturaService {
     public List<Factura> getAll();
     public Set<Pago> getPagos(Integer id);
     public void update(Factura factura);
+
+    public void updateDelete(Integer id);
+
     public void delete(Integer id);
 
 }

@@ -63,7 +63,6 @@ public class QueryController {
 
     @PostMapping("/pagosFecha")
     public List getComprasFactura(@RequestBody FormPagos formPagos ) {
-        System.out.println(formPagos);
         return queryService.queryPagosFechas(formPagos);
     }
 

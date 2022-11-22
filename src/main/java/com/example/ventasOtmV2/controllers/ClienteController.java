@@ -17,18 +17,6 @@ import java.util.List;
 @RequestMapping("/cliente")
 public class ClienteController {
 
-/*
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*").allowedMethods("GET", "POST","PUT", "DELETE");
-            }
-        };
-    }
-*/
-
     @Autowired
     private ClienteService clienteService;
 
@@ -52,11 +40,25 @@ public class ClienteController {
     public ResponseEntity<String> editTipoPago(@RequestBody Cliente cliente ){
         ResponseEntity<String> response;
 
+
         clienteService.updateClientes(cliente) ;
 
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
         return response;
     }
+
+    @PutMapping("/editEstado/{id}")
+    public ResponseEntity<String> editEstadoCliente(@PathVariable Integer id){
+        ResponseEntity<String> response;
+
+        clienteService.updateDeleteCliente(id);
+
+        response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
+        return response;
+    }
+
+
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteCliente(@PathVariable Integer id ){
@@ -70,9 +72,11 @@ public class ClienteController {
 
     @GetMapping("/get-name/{name}")
     public ResponseEntity<List<Cliente>> getClienteName(@PathVariable String name ){
-        System.out.println(name);
         return ResponseEntity.ok(clienteService.getClienteByName(name)) ;
     }
+
+
+
 
 
 }

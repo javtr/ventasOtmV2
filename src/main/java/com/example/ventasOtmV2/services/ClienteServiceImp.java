@@ -65,6 +65,25 @@ public class ClienteServiceImp implements ClienteService{
         clienteRepository.save(cliente);
     }
 
+
+
+    @Override
+    public void updateDeleteCliente(Integer id) {
+
+        //comprobar si existe la entidad
+        if(!clienteRepository.existsById(id)){
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
+        }
+
+        //obtener, cambiar estado y guardar
+        Cliente cliente = clienteRepository.findById(id).get();
+        cliente.setEstado(2);
+        clienteRepository.save(cliente);
+    }
+
+
+
+
     @Override
     public void deleteClientes(Integer id) {
 

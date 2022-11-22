@@ -64,7 +64,6 @@ public class QueryServiceImp implements QueryService{
     @Override
     public List queryPagosFechas(FormPagos formPagos) {
 
-        System.out.println("llega servicio: " + formPagos);
 
         String jpql = "SELECT p FROM Pago p WHERE p.fechaDesembolso between :fechaIni and :fechaFin";
         javax.persistence.Query myQuery = em.createQuery(jpql);

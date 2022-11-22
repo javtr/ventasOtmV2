@@ -68,9 +68,6 @@ public class UsuarioController {
     @GetMapping("/getUserByToken")
     public ResponseEntity<Usuario> getUserToken(@RequestHeader(value="Authorization") String token) {
 
-
-        System.out.println(token);
-
         if (usuarioService.verificarToken(token)) {
 
             return ResponseEntity.ok(usuarioService.getUsuario(Integer.valueOf(usuarioService.verificarId(token))));
