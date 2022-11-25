@@ -169,7 +169,7 @@ public class RegistroServiceImp implements RegistroService{
                 double pagoFee = pagoCuota-(pagoCuota*0.039)-0.3-(pagoCuota*0.047);
 
                 //guardar cada pago
-                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,facturaSend);
+                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,idCliente,idFactura,facturaSend);
 
                 pagoService.save(pago);
 
@@ -179,7 +179,7 @@ public class RegistroServiceImp implements RegistroService{
 
 
             //guardar el pago unico
-            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),0,facturaSend);
+            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),0,idCliente,idFactura,facturaSend);
 
 
             pagoService.save(pago);

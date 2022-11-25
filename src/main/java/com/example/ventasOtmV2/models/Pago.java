@@ -1,9 +1,6 @@
 package com.example.ventasOtmV2.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 
@@ -27,6 +24,11 @@ public class Pago {
 
     private Integer estado;
 
+    private Integer clientePagoId;
+
+    private Integer facturaPagoId;
+
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id",nullable = false)
@@ -36,13 +38,14 @@ public class Pago {
     public Pago() {
     }
 
-
-    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, Factura facturaPago) {
+    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, Integer clientePagoId, Integer facturaPagoId, Factura facturaPago) {
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
         this.estado = estado;
+        this.clientePagoId = clientePagoId;
+        this.facturaPagoId = facturaPagoId;
         this.facturaPago = facturaPago;
     }
 
@@ -61,6 +64,22 @@ public class Pago {
 
     public Integer getEstado() {
         return estado;
+    }
+
+    public Integer getClientePagoId() {
+        return clientePagoId;
+    }
+
+    public void setClientePagoId(Integer clientePagoId) {
+        this.clientePagoId = clientePagoId;
+    }
+
+    public Integer getFacturaPagoId() {
+        return facturaPagoId;
+    }
+
+    public void setFacturaPagoId(Integer facturaPagoId) {
+        this.facturaPagoId = facturaPagoId;
     }
 
     public void setEstado(Integer estado) {

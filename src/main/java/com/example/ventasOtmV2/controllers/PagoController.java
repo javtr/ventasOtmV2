@@ -3,6 +3,7 @@ package com.example.ventasOtmV2.controllers;
 import com.example.ventasOtmV2.models.Factura;
 import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.models.TipoPago;
+import com.example.ventasOtmV2.repository.PagoRepository;
 import com.example.ventasOtmV2.services.PagoService;
 import com.example.ventasOtmV2.services.TipoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class PagoController {
 
     @Autowired
     private PagoService pagoService;
+    @Autowired
+    private PagoRepository pagoRepository;
+
 
 
     @PostMapping("/save")
@@ -72,5 +76,13 @@ public class PagoController {
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
         return response;
     }
+
+
+    @GetMapping("/get-all-id/{id}")
+    public ResponseEntity<List<Pago>> getAllId(@PathVariable Integer id ){
+
+        return ResponseEntity.ok(pagoRepository.findAllPagosByClienteId(id)) ;
+    }
+
 
 }
