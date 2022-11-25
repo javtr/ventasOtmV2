@@ -134,8 +134,15 @@ public class RegistroServiceImp implements RegistroService{
 
         //pagos
         String tipoPagoReg = registro.getTipoPago();
+        String medioPago = registro.getMedioPago();
         Integer numeroCuotas = registro.getCuotas();
         double feeCuota = 0.9;
+
+        //cliente y estados
+        String clienteTemp = clienteService.getCliente(idCliente).getNombre() + " " + clienteService.getCliente(idCliente).getApellido();
+        Integer facturaId = facturaSend.getId();
+        Integer clienteId = idCliente;
+
 
 
 
@@ -144,6 +151,8 @@ public class RegistroServiceImp implements RegistroService{
             String fechaPago = registro.getFecha();
             Date fechaPagoDate =new SimpleDateFormat("yyyy-MM-dd").parse(fechaPago);
             double pagoCuota = totalTodasCompras / numeroCuotas;
+
+
 
 
             //por cada cuota
@@ -166,10 +175,20 @@ public class RegistroServiceImp implements RegistroService{
 
                 SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
                 String dateCuotaDes = sdf2.format(fechaDesembolso.getTime());
-                double pagoFee = pagoCuota-(pagoCuota*0.039)-0.3-(pagoCuota*0.047);
+
+                //calculo impuestos
+                double pagoFee = pagoCuota;
+
+                if (medioPago.equals("paypal OTM")||medioPago.equals("Paypal cristian"))
+                {
+                    pagoFee = pagoCuota-(pagoCuota*0.054)-0.3;
+                } else if (medioPago.equals("teachable")) {
+                    pagoFee = pagoCuota-(pagoCuota*0.039)-0.3-(pagoCuota*0.047);
+                }
+
 
                 //guardar cada pago
-                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,facturaSend);
+                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,medioPago,clienteTemp,facturaSend,facturaId,clienteId);
 
                 pagoService.save(pago);
 
@@ -177,9 +196,20 @@ public class RegistroServiceImp implements RegistroService{
 
         } else if (tipoPagoReg.equals("unico")) {
 
+            //calculo impuestos
+            double pagoFee = totalTodasCompras;
+
+            if (medioPago.equals("paypal OTM")||medioPago.equals("Paypal cristian"))
+            {
+                pagoFee = totalTodasCompras-(totalTodasCompras*0.054)-0.3;
+            } else if (medioPago.equals("teachable")) {
+                pagoFee = totalTodasCompras-(totalTodasCompras*0.039)-0.3-(totalTodasCompras*0.047);
+            }
+
+
 
             //guardar el pago unico
-            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,(totalTodasCompras*feeCuota),0,facturaSend);
+            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,pagoFee,0,medioPago,clienteTemp,facturaSend,facturaId,clienteId);
 
 
             pagoService.save(pago);

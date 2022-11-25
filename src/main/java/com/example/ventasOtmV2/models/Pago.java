@@ -1,5 +1,6 @@
 package com.example.ventasOtmV2.models;
 
+import com.example.ventasOtmV2.DTO.PagoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,6 +28,13 @@ public class Pago {
 
     private Integer estado;
 
+    private String tipoPagoInsertado;
+    private String clienteInsertado;
+
+    private Integer facturaActiva;
+
+    private Integer clienteActivo;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id",nullable = false)
@@ -36,14 +44,21 @@ public class Pago {
     public Pago() {
     }
 
+    public Pago(String fechaPago) {
+        this.fechaPago = fechaPago;
+    }
 
-    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, Factura facturaPago) {
+    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado,String tipoPagoInsertado,String clienteInsertado, Factura facturaPago, Integer facturaActiva, Integer clienteActivo) {
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
         this.estado = estado;
+        this.tipoPagoInsertado = tipoPagoInsertado;
+        this.clienteInsertado = clienteInsertado;
         this.facturaPago = facturaPago;
+        this.facturaActiva = facturaActiva;
+        this.clienteActivo = clienteActivo;
     }
 
     public Pago(Integer id, Integer estado) {
@@ -65,6 +80,22 @@ public class Pago {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
+    }
+
+    public String getTipoPagoInsertado() {
+        return tipoPagoInsertado;
+    }
+
+    public void setTipoPagoInsertado(String tipoPagoInsertado) {
+        this.tipoPagoInsertado = tipoPagoInsertado;
+    }
+
+    public String getClienteInsertado() {
+        return clienteInsertado;
+    }
+
+    public void setClienteInsertado(String clienteInsertado) {
+        this.clienteInsertado = clienteInsertado;
     }
 
     public Integer getId() {
@@ -99,7 +130,21 @@ public class Pago {
         this.valorPagoNeto = valorPagoNeto;
     }
 
+    public Integer getFacturaActiva() {
+        return facturaActiva;
+    }
 
+    public void setFacturaActiva(Integer facturaActiva) {
+        this.facturaActiva = facturaActiva;
+    }
+
+    public Integer getClienteActivo() {
+        return clienteActivo;
+    }
+
+    public void setClienteActivo(Integer clienteActivo) {
+        this.clienteActivo = clienteActivo;
+    }
 
     public Factura getFacturaPago() {
         return facturaPago;
@@ -109,6 +154,42 @@ public class Pago {
     public void setFacturaPago(Factura facturaPago) {
         this.facturaPago = facturaPago;
     }
+
+
+
+    public PagoDTO toDTO(){
+
+        PagoDTO PagoDTO = new PagoDTO();
+
+        PagoDTO.setId(id);
+
+        PagoDTO.setFechaPago(fechaPago);
+        PagoDTO.setFechaDesembolso(fechaDesembolso);
+
+        PagoDTO.setValorPago(valorPago);
+        PagoDTO.setValorPagoNeto(valorPagoNeto);
+
+        /*
+        PagoDTO.setTipoPago(facturaPago.getTipoPagoFactura().getTipoPago());
+        PagoDTO.setCliente(
+                facturaPago.getClienteFactura().getNombre()+" "+
+                facturaPago.getClienteFactura().getApellido()
+        );
+*/
+
+        PagoDTO.setTipoPago(tipoPagoInsertado);
+        PagoDTO.setCliente(clienteInsertado);
+
+        PagoDTO.setFacturaActiva(facturaActiva);
+        PagoDTO.setClienteActivo(clienteActivo);
+
+
+        return PagoDTO;
+    }
+
+
+
+
 
     @Override
     public String toString() {

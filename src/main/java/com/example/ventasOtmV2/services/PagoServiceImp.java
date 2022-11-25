@@ -1,5 +1,6 @@
 package com.example.ventasOtmV2.services;
 
+import com.example.ventasOtmV2.DTO.PagoDTO;
 import com.example.ventasOtmV2.exceptions.RequestException;
 import com.example.ventasOtmV2.models.Factura;
 import com.example.ventasOtmV2.models.Pago;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PagoServiceImp implements PagoService {
@@ -113,5 +116,22 @@ public class PagoServiceImp implements PagoService {
             throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"La entidad no se elimino");
         }
 
+
     }
+
+
+
+    public List<PagoDTO> getAllPagoDto() {
+        List<Pago> reservationList = pagoRepository.findAll();
+        return reservationList.stream().map(pago -> pago.toDTO()).collect(Collectors.toList());
+    }
+
+
+
+
+
+
+
+
+
 }

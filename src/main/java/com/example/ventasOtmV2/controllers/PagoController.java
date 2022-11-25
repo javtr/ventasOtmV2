@@ -1,8 +1,10 @@
 package com.example.ventasOtmV2.controllers;
 
+import com.example.ventasOtmV2.DTO.PagoDTO;
 import com.example.ventasOtmV2.models.Factura;
 import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.models.TipoPago;
+import com.example.ventasOtmV2.repository.PagoRepository;
 import com.example.ventasOtmV2.services.PagoService;
 import com.example.ventasOtmV2.services.TipoPagoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,11 @@ public class PagoController {
     private PagoService pagoService;
 
 
+
+    @Autowired
+    private PagoRepository pagoRepository;
+
+
     @PostMapping("/save")
     public ResponseEntity<Pago> add(@RequestBody Pago pago){
         return ResponseEntity.ok(pagoService.save(pago)) ;
@@ -42,6 +49,18 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.getAll()) ;
     }
 
+
+    @GetMapping("/get-all-q")
+    public ResponseEntity<List<Pago>> getAllQuery(){
+
+        return ResponseEntity.ok(pagoRepository.getAllPagosQuery()) ;
+    }
+
+    @GetMapping("/get-all-q2")
+    public ResponseEntity<List<Pago>> getAllQuery2(){
+
+        return ResponseEntity.ok(pagoRepository.getAllPagosQuery2()) ;
+    }
 
 
     @PutMapping("/edit")
@@ -72,5 +91,12 @@ public class PagoController {
         response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
         return response;
     }
+
+    @GetMapping("/get-all-dto")
+    public ResponseEntity<List<PagoDTO>> getAllPagoDto(){
+
+        return ResponseEntity.ok(pagoService.getAllPagoDto());
+    }
+
 
 }
