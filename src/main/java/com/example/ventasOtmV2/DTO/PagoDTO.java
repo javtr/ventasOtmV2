@@ -1,7 +1,5 @@
 package com.example.ventasOtmV2.DTO;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 public class PagoDTO {
 
     private Integer id;
@@ -16,10 +14,20 @@ public class PagoDTO {
 
     private String tipoPago;
 
-    private String cliente;
+    private String clienteNombre;
 
-    private Integer facturaActiva;
-    private Integer clienteActivo;
+
+    private Integer facturaId;
+    private Integer clienteId;
+
+
+    private Integer estadoPago;
+
+    private Integer estadoClientePago;
+
+    private Integer estadoFacturaPago;
+
+
 
 
 
@@ -27,31 +35,46 @@ public class PagoDTO {
     public PagoDTO() {
     }
 
-    public PagoDTO(Integer id, String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, String tipoPago, String cliente, Integer facturaActiva,Integer clienteActivo) {
+    public PagoDTO(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, String tipoPago, String clienteNombre, Integer facturaId, Integer clienteId, Integer estadoPago, Integer estadoClientePago, Integer estadoFacturaPago) {
+        this.fechaPago = fechaPago;
+        this.fechaDesembolso = fechaDesembolso;
+        this.valorPago = valorPago;
+        this.valorPagoNeto = valorPagoNeto;
+        this.tipoPago = tipoPago;
+        this.clienteNombre = clienteNombre;
+        this.facturaId = facturaId;
+        this.clienteId = clienteId;
+        this.estadoPago = estadoPago;
+        this.estadoClientePago = estadoClientePago;
+        this.estadoFacturaPago = estadoFacturaPago;
+    }
+
+
+    public PagoDTO(Integer id, String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, String tipoPago, String clienteNombre, Integer facturaId, Integer clienteId, Integer estadoPago, Integer estadoClientePago, Integer estadoFacturaPago) {
         this.id = id;
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
         this.tipoPago = tipoPago;
-        this.cliente = cliente;
-        this.facturaActiva = facturaActiva;
-        this.clienteActivo = clienteActivo;
-    }
-
-    public PagoDTO(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, String tipoPago, String cliente, Integer facturaActiva,Integer clienteActivo) {
-        this.fechaPago = fechaPago;
-        this.fechaDesembolso = fechaDesembolso;
-        this.valorPago = valorPago;
-        this.valorPagoNeto = valorPagoNeto;
-        this.tipoPago = tipoPago;
-        this.cliente = cliente;
-        this.facturaActiva = facturaActiva;
-        this.clienteActivo = clienteActivo;
+        this.clienteNombre = clienteNombre;
+        this.facturaId = facturaId;
+        this.clienteId = clienteId;
+        this.estadoPago = estadoPago;
+        this.estadoClientePago = estadoClientePago;
+        this.estadoFacturaPago = estadoFacturaPago;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getEstadoPago() {
+        return estadoPago;
+    }
+
+    public void setEstadoPago(Integer estadoPago) {
+        this.estadoPago = estadoPago;
     }
 
     public void setId(Integer id) {
@@ -62,12 +85,36 @@ public class PagoDTO {
         return fechaPago;
     }
 
+    public Integer getEstadoClientePago() {
+        return estadoClientePago;
+    }
+
+    public void setEstadoClientePago(Integer estadoClientePago) {
+        this.estadoClientePago = estadoClientePago;
+    }
+
+    public Integer getEstadoFacturaPago() {
+        return estadoFacturaPago;
+    }
+
+    public void setEstadoFacturaPago(Integer estadoFacturaPago) {
+        this.estadoFacturaPago = estadoFacturaPago;
+    }
+
     public void setFechaPago(String fechaPago) {
         this.fechaPago = fechaPago;
     }
 
     public String getFechaDesembolso() {
         return fechaDesembolso;
+    }
+
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
     }
 
     public void setFechaDesembolso(String fechaDesembolso) {
@@ -98,28 +145,24 @@ public class PagoDTO {
         this.tipoPago = tipoPago;
     }
 
-    public String getCliente() {
-        return cliente;
+    public Integer getFacturaId() {
+        return facturaId;
     }
 
-    public Integer getFacturaActiva() {
-        return facturaActiva;
+    public void setFacturaId(Integer facturaId) {
+        this.facturaId = facturaId;
     }
 
-    public void setFacturaActiva(Integer facturaActiva) {
-        this.facturaActiva = facturaActiva;
+    public Integer getClienteId() {
+        return clienteId;
     }
 
-    public Integer getClienteActivo() {
-        return clienteActivo;
+    public void setClienteId(Integer clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public void setClienteActivo(Integer clienteActivo) {
-        this.clienteActivo = clienteActivo;
-    }
 
-    public void setCliente(String cliente) {
-        this.cliente = cliente;
-    }
+
+
 }
 

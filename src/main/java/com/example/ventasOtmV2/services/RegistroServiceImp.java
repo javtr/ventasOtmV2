@@ -1,21 +1,15 @@
 package com.example.ventasOtmV2.services;
 
-import com.example.ventasOtmV2.exceptions.RequestException;
 import com.example.ventasOtmV2.models.*;
-import com.example.ventasOtmV2.repository.ClienteRepository;
 import com.example.ventasOtmV2.repository.FacturaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class RegistroServiceImp implements RegistroService{
@@ -138,6 +132,7 @@ public class RegistroServiceImp implements RegistroService{
         Integer numeroCuotas = registro.getCuotas();
         double feeCuota = 0.9;
 
+
         //cliente y estados
         String clienteTemp = clienteService.getCliente(idCliente).getNombre() + " " + clienteService.getCliente(idCliente).getApellido();
         Integer facturaId = facturaSend.getId();
@@ -188,11 +183,29 @@ public class RegistroServiceImp implements RegistroService{
 
 
                 //guardar cada pago
-                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,medioPago,clienteTemp,facturaSend,facturaId,clienteId);
+                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,clienteTemp,medioPago ,facturaId,clienteId,0,0,facturaSend);
 
                 pagoService.save(pago);
 
             }
+
+/*
+            this.fechaPago = fechaPago;
+            this.fechaDesembolso = fechaDesembolso;
+            this.valorPago = valorPago;
+            this.valorPagoNeto = valorPagoNeto;
+            this.estado = estado;
+            this.tipoPago = tipoPago;
+            this.facturaIdPago = facturaIdPago;
+            this.clienteIdPago = clienteIdPago;
+            this.estadoClientePago = estadoClientePago;
+            this.estadoFacturaPago = estadoFacturaPago;
+            this.facturaPago = facturaPago;
+
+ */
+
+
+
 
         } else if (tipoPagoReg.equals("unico")) {
 
@@ -209,7 +222,7 @@ public class RegistroServiceImp implements RegistroService{
 
 
             //guardar el pago unico
-            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,pagoFee,0,medioPago,clienteTemp,facturaSend,facturaId,clienteId);
+            Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,pagoFee,0,clienteTemp   , medioPago, facturaId,clienteId,0,0,facturaSend);
 
 
             pagoService.save(pago);

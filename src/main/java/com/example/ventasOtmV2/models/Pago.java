@@ -2,9 +2,6 @@ package com.example.ventasOtmV2.models;
 
 import com.example.ventasOtmV2.DTO.PagoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 
@@ -28,12 +25,18 @@ public class Pago {
 
     private Integer estado;
 
-    private String tipoPagoInsertado;
-    private String clienteInsertado;
+    private String clienteNombre;
 
-    private Integer facturaActiva;
 
-    private Integer clienteActivo;
+    private String tipoPago;
+
+    private Integer facturaIdPago;
+
+    private Integer clienteIdPago;
+
+    private Integer estadoClientePago;
+
+    private Integer estadoFacturaPago;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -48,17 +51,19 @@ public class Pago {
         this.fechaPago = fechaPago;
     }
 
-    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado,String tipoPagoInsertado,String clienteInsertado, Factura facturaPago, Integer facturaActiva, Integer clienteActivo) {
+    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, String clienteNombre, String tipoPago, Integer facturaIdPago, Integer clienteIdPago, Integer estadoClientePago, Integer estadoFacturaPago, Factura facturaPago) {
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
         this.estado = estado;
-        this.tipoPagoInsertado = tipoPagoInsertado;
-        this.clienteInsertado = clienteInsertado;
+        this.clienteNombre = clienteNombre;
+        this.tipoPago = tipoPago;
+        this.facturaIdPago = facturaIdPago;
+        this.clienteIdPago = clienteIdPago;
+        this.estadoClientePago = estadoClientePago;
+        this.estadoFacturaPago = estadoFacturaPago;
         this.facturaPago = facturaPago;
-        this.facturaActiva = facturaActiva;
-        this.clienteActivo = clienteActivo;
     }
 
     public Pago(Integer id, Integer estado) {
@@ -82,24 +87,32 @@ public class Pago {
         this.estado = estado;
     }
 
-    public String getTipoPagoInsertado() {
-        return tipoPagoInsertado;
+    public String getTipoPago() {
+        return tipoPago;
     }
 
-    public void setTipoPagoInsertado(String tipoPagoInsertado) {
-        this.tipoPagoInsertado = tipoPagoInsertado;
-    }
-
-    public String getClienteInsertado() {
-        return clienteInsertado;
-    }
-
-    public void setClienteInsertado(String clienteInsertado) {
-        this.clienteInsertado = clienteInsertado;
+    public void setTipoPago(String tipoPago) {
+        this.tipoPago = tipoPago;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getEstadoClientePago() {
+        return estadoClientePago;
+    }
+
+    public void setEstadoClientePago(Integer estadoClientePago) {
+        this.estadoClientePago = estadoClientePago;
+    }
+
+    public Integer getEstadoFacturaPago() {
+        return estadoFacturaPago;
+    }
+
+    public void setEstadoFacturaPago(Integer estadoFacturaPago) {
+        this.estadoFacturaPago = estadoFacturaPago;
     }
 
     public void setId(Integer id) {
@@ -130,20 +143,28 @@ public class Pago {
         this.valorPagoNeto = valorPagoNeto;
     }
 
-    public Integer getFacturaActiva() {
-        return facturaActiva;
+    public Integer getFacturaIdPago() {
+        return facturaIdPago;
     }
 
-    public void setFacturaActiva(Integer facturaActiva) {
-        this.facturaActiva = facturaActiva;
+    public void setFacturaIdPago(Integer facturaIdPago) {
+        this.facturaIdPago = facturaIdPago;
     }
 
-    public Integer getClienteActivo() {
-        return clienteActivo;
+    public Integer getClienteIdPago() {
+        return clienteIdPago;
     }
 
-    public void setClienteActivo(Integer clienteActivo) {
-        this.clienteActivo = clienteActivo;
+    public void setClienteIdPago(Integer clienteIdPago) {
+        this.clienteIdPago = clienteIdPago;
+    }
+
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
     }
 
     public Factura getFacturaPago() {
@@ -177,11 +198,18 @@ public class Pago {
         );
 */
 
-        PagoDTO.setTipoPago(tipoPagoInsertado);
-        PagoDTO.setCliente(clienteInsertado);
 
-        PagoDTO.setFacturaActiva(facturaActiva);
-        PagoDTO.setClienteActivo(clienteActivo);
+        PagoDTO.setClienteNombre(clienteNombre);
+
+        PagoDTO.setTipoPago(tipoPago);
+
+        PagoDTO.setFacturaId(facturaIdPago);
+        PagoDTO.setClienteId(clienteIdPago);
+
+        PagoDTO.setEstadoPago(estado);
+
+        PagoDTO.setEstadoClientePago(estadoClientePago);
+        PagoDTO.setEstadoFacturaPago(estadoFacturaPago);
 
 
         return PagoDTO;

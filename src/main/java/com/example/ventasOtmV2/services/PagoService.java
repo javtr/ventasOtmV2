@@ -21,5 +21,8 @@ public interface PagoService {
 
     public List<PagoDTO> getAllPagoDto();
 
+    public List<PagoDTO> getAllPagoFactura(Integer id);
+
+
 
 }

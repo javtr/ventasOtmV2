@@ -99,4 +99,12 @@ public class PagoController {
     }
 
 
+
+    @GetMapping("/get-factura/{id}")
+    public ResponseEntity<List<PagoDTO>> getPagoActive(@PathVariable Integer id ){
+
+        return ResponseEntity.ok(pagoService.getAllPagoFactura(id));
+    }
+
+
 }

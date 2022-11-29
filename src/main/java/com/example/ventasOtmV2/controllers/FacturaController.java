@@ -63,6 +63,21 @@ public class FacturaController {
     }
 
 
+    @PutMapping("/editEstadoAct")
+    public ResponseEntity<String> editEstadoAct(@RequestBody Factura factura ){
+
+        System.out.println(factura);
+
+        ResponseEntity<String> response;
+
+        facturaService.updateState(factura);
+
+        response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
+        return response;
+    }
+
+
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> delete(@PathVariable Integer id ){
         ResponseEntity<String> response;

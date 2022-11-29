@@ -15,6 +15,9 @@ public interface FacturaService {
 
     public void updateDelete(Integer id);
 
+    public void updateState(Factura factura);
+
+
     public void delete(Integer id);
 
 }

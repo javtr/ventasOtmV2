@@ -11,6 +11,10 @@ public interface ClienteService {
 
     public void updateDeleteCliente(Integer id);
 
+
+    public void updateState(Cliente cliente);
+
+
     public void deleteClientes(Integer id);
     public List<Cliente> getClienteByName(String name);
 
