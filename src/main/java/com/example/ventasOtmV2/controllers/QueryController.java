@@ -67,6 +67,16 @@ public class QueryController {
     }
 
 
+    @GetMapping("/pagos-activos")
+    public List getPagosActivos( ) {
+        return queryService.queryPagos();
+    }
+
+
+    @GetMapping("/status")
+    public String  getStatus( ) {
+        return "ok";
+    }
 
 
 }

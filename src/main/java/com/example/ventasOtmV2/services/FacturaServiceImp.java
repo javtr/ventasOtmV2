@@ -3,15 +3,18 @@ package com.example.ventasOtmV2.services;
 import com.example.ventasOtmV2.exceptions.RequestException;
 import com.example.ventasOtmV2.models.Cliente;
 import com.example.ventasOtmV2.models.Factura;
+import com.example.ventasOtmV2.models.MedioPago;
 import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.repository.ClienteRepository;
 import com.example.ventasOtmV2.repository.FacturaRepository;
+import com.example.ventasOtmV2.repository.MedioPagoRepository;
 import com.example.ventasOtmV2.repository.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -23,6 +26,13 @@ public class FacturaServiceImp implements FacturaService {
 
     @Autowired
     private PagoRepository pagoRepository;
+
+    @Autowired
+    private MedioPagoRepository medioPagoRepository;
+
+    @Autowired
+    private MedioPagoService medioPagoService;
+
 
 
     @Override
@@ -157,9 +167,16 @@ public class FacturaServiceImp implements FacturaService {
         List<Pago> pagos = pagoRepository.getAllPagosByFactura(factura.getId());
 
         for (int i=0;i<pagos.size();i++) {
-            pagos.get(i).setEstadoFacturaPago(factura.getCompraActiva());
+
+            MedioPago medio = medioPagoService.get(factura.getMedioPagoFactura().getId());
+
+           String medioSt = medio.getMedioPago();
+
+            pagos.get(i).setTipoPago(medioSt);
+            System.out.println(medioSt);
             pagoRepository.save(pagos.get(i));
         }
+
 
     }
 
