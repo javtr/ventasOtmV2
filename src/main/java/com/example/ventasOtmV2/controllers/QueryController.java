@@ -79,4 +79,17 @@ public class QueryController {
     }
 
 
+    @GetMapping("/total-pagos")
+    public List getTotalPagosActivos( ) {
+        return queryService.queryTotalPagos();
+    }
+
+    @GetMapping("/pagos-mes")
+    public List getTotalPagosMes( ) {
+        return queryService.queryTotalPagosPorMes();
+    }
+
+
+
+
 }

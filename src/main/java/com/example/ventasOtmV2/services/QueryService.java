@@ -19,5 +19,8 @@ public interface QueryService {
 
     public List queryPagosFechas(FormPagos formPagos);
 
+    public List queryTotalPagos();
+
+    public List queryTotalPagosPorMes();
 
 }
