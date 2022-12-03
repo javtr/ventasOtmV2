@@ -2,7 +2,9 @@ package com.example.ventasOtmV2.services;
 
 import com.example.ventasOtmV2.exceptions.RequestException;
 import com.example.ventasOtmV2.models.Cliente;
+import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.repository.ClienteRepository;
+import com.example.ventasOtmV2.repository.PagoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ import java.util.Optional;
 public class ClienteServiceImp implements ClienteService{
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private PagoRepository pagoRepository;
 
     @Override
     public Cliente saveCliente(Cliente cliente) {
@@ -82,6 +87,37 @@ public class ClienteServiceImp implements ClienteService{
     }
 
 
+
+    @Override
+    public void updateState(Cliente cliente) {
+
+        //comprobar si existe la entidad
+        if(!clienteRepository.existsById(cliente.getId())){
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"Entidad no existe");
+        }
+
+        //comprobar si se envian los datos necesarios
+        if(cliente.getNombre()==null || cliente.getNombre().equals("")){
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"nombre faltante");
+        }else if(cliente.getCorreo()==null || cliente.getCorreo().equals("")){
+            throw new RequestException("P-401", HttpStatus.BAD_REQUEST,"correo faltante");
+        }
+
+        clienteRepository.save(cliente);
+
+
+        //actualizar pagos
+
+        List<Pago> pagos = pagoRepository.getAllPagosByCliente(cliente.getId());
+
+        for (int i=0;i<pagos.size();i++) {
+            pagos.get(i).setEstadoClientePago(cliente.getEstado());
+            pagoRepository.save(pagos.get(i));
+        }
+
+
+
+    }
 
 
     @Override

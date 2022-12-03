@@ -1,6 +1,7 @@
 package com.example.ventasOtmV2.controllers;
 
 import com.example.ventasOtmV2.models.Cliente;
+import com.example.ventasOtmV2.models.Factura;
 import com.example.ventasOtmV2.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -57,6 +58,18 @@ public class ClienteController {
         return response;
     }
 
+
+    @PutMapping("/editEstadoAct")
+    public ResponseEntity<String> editEstadoAct(@RequestBody Cliente cliente ){
+
+        ResponseEntity<String> response;
+
+        clienteService.updateState(cliente);
+
+        response = ResponseEntity.status(HttpStatus.OK).body("Entidad editada");
+        return response;
+
+    }
 
 
 

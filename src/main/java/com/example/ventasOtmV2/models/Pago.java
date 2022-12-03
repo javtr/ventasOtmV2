@@ -1,5 +1,6 @@
 package com.example.ventasOtmV2.models;
 
+import com.example.ventasOtmV2.DTO.PagoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
@@ -24,9 +25,19 @@ public class Pago {
 
     private Integer estado;
 
-    private Integer clientePagoId;
 
-    private Integer facturaPagoId;
+    private String clienteNombre;
+
+
+    private String tipoPago;
+
+    private Integer facturaIdPago;
+
+    private Integer clienteIdPago;
+
+    private Integer estadoClientePago;
+
+    private Integer estadoFacturaPago;
 
 
 
@@ -38,14 +49,26 @@ public class Pago {
     public Pago() {
     }
 
-    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, Integer clientePagoId, Integer facturaPagoId, Factura facturaPago) {
+
+    public Pago(String fechaPago) {
+        this.fechaPago = fechaPago;
+    }
+
+    public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, String clienteNombre, String tipoPago, Integer facturaIdPago, Integer clienteIdPago, Integer estadoClientePago, Integer estadoFacturaPago, Factura facturaPago) {
+
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
         this.estado = estado;
-        this.clientePagoId = clientePagoId;
-        this.facturaPagoId = facturaPagoId;
+
+        this.clienteNombre = clienteNombre;
+        this.tipoPago = tipoPago;
+        this.facturaIdPago = facturaIdPago;
+        this.clienteIdPago = clienteIdPago;
+        this.estadoClientePago = estadoClientePago;
+        this.estadoFacturaPago = estadoFacturaPago;
+
         this.facturaPago = facturaPago;
     }
 
@@ -86,8 +109,32 @@ public class Pago {
         this.estado = estado;
     }
 
+    public String getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(String tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
     public Integer getId() {
         return id;
+    }
+
+    public Integer getEstadoClientePago() {
+        return estadoClientePago;
+    }
+
+    public void setEstadoClientePago(Integer estadoClientePago) {
+        this.estadoClientePago = estadoClientePago;
+    }
+
+    public Integer getEstadoFacturaPago() {
+        return estadoFacturaPago;
+    }
+
+    public void setEstadoFacturaPago(Integer estadoFacturaPago) {
+        this.estadoFacturaPago = estadoFacturaPago;
     }
 
     public void setId(Integer id) {
@@ -118,7 +165,29 @@ public class Pago {
         this.valorPagoNeto = valorPagoNeto;
     }
 
+    public Integer getFacturaIdPago() {
+        return facturaIdPago;
+    }
 
+    public void setFacturaIdPago(Integer facturaIdPago) {
+        this.facturaIdPago = facturaIdPago;
+    }
+
+    public Integer getClienteIdPago() {
+        return clienteIdPago;
+    }
+
+    public void setClienteIdPago(Integer clienteIdPago) {
+        this.clienteIdPago = clienteIdPago;
+    }
+
+    public String getClienteNombre() {
+        return clienteNombre;
+    }
+
+    public void setClienteNombre(String clienteNombre) {
+        this.clienteNombre = clienteNombre;
+    }
 
     public Factura getFacturaPago() {
         return facturaPago;
@@ -128,6 +197,49 @@ public class Pago {
     public void setFacturaPago(Factura facturaPago) {
         this.facturaPago = facturaPago;
     }
+
+
+
+    public PagoDTO toDTO(){
+
+        PagoDTO PagoDTO = new PagoDTO();
+
+        PagoDTO.setId(id);
+
+        PagoDTO.setFechaPago(fechaPago);
+        PagoDTO.setFechaDesembolso(fechaDesembolso);
+
+        PagoDTO.setValorPago(valorPago);
+        PagoDTO.setValorPagoNeto(valorPagoNeto);
+
+        /*
+        PagoDTO.setTipoPago(facturaPago.getTipoPagoFactura().getTipoPago());
+        PagoDTO.setCliente(
+                facturaPago.getClienteFactura().getNombre()+" "+
+                facturaPago.getClienteFactura().getApellido()
+        );
+*/
+
+
+        PagoDTO.setClienteNombre(clienteNombre);
+
+        PagoDTO.setTipoPago(tipoPago);
+
+        PagoDTO.setFacturaId(facturaIdPago);
+        PagoDTO.setClienteId(clienteIdPago);
+
+        PagoDTO.setEstadoPago(estado);
+
+        PagoDTO.setEstadoClientePago(estadoClientePago);
+        PagoDTO.setEstadoFacturaPago(estadoFacturaPago);
+
+
+        return PagoDTO;
+    }
+
+
+
+
 
     @Override
     public String toString() {

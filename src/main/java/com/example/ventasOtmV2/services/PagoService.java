@@ -1,4 +1,5 @@
 package com.example.ventasOtmV2.services;
+import com.example.ventasOtmV2.DTO.PagoDTO;
 import com.example.ventasOtmV2.models.Factura;
 import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.models.TipoPago;
@@ -17,5 +18,11 @@ public interface PagoService {
 
 
     public void delete(Integer id);
+
+    public List<PagoDTO> getAllPagoDto();
+
+    public List<PagoDTO> getAllPagoFactura(Integer id);
+
+
 
 }

@@ -8,6 +8,9 @@ public interface QueryService {
 
     public List queryCliente();
 
+    public List queryPagos();
+
+
     public List queryFacturasCliente(Integer id);
 
     public List queryPagosFactura(Integer id);
@@ -16,5 +19,8 @@ public interface QueryService {
 
     public List queryPagosFechas(FormPagos formPagos);
 
+    public List queryTotalPagos();
+
+    public List queryTotalPagosPorMes();
 
 }

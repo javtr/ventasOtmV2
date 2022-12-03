@@ -1,5 +1,6 @@
 package com.example.ventasOtmV2.controllers;
 
+import com.example.ventasOtmV2.DTO.PagoDTO;
 import com.example.ventasOtmV2.models.Factura;
 import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.models.TipoPago;
@@ -29,6 +30,11 @@ public class PagoController {
 
 
 
+
+    @Autowired
+    private PagoRepository pagoRepository;
+
+
     @PostMapping("/save")
     public ResponseEntity<Pago> add(@RequestBody Pago pago){
         return ResponseEntity.ok(pagoService.save(pago)) ;
@@ -46,6 +52,18 @@ public class PagoController {
         return ResponseEntity.ok(pagoService.getAll()) ;
     }
 
+
+    @GetMapping("/get-all-q")
+    public ResponseEntity<List<Pago>> getAllQuery(){
+
+        return ResponseEntity.ok(pagoRepository.getAllPagosQuery()) ;
+    }
+
+    @GetMapping("/get-all-q2")
+    public ResponseEntity<List<Pago>> getAllQuery2(){
+
+        return ResponseEntity.ok(pagoRepository.getAllPagosQuery2()) ;
+    }
 
 
     @PutMapping("/edit")
@@ -78,10 +96,19 @@ public class PagoController {
     }
 
 
-    @GetMapping("/get-all-id/{id}")
-    public ResponseEntity<List<Pago>> getAllId(@PathVariable Integer id ){
+    @GetMapping("/get-all-dto")
+    public ResponseEntity<List<PagoDTO>> getAllPagoDto(){
 
-        return ResponseEntity.ok(pagoRepository.findAllPagosByClienteId(id)) ;
+        return ResponseEntity.ok(pagoService.getAllPagoDto());
+    }
+
+
+
+    @GetMapping("/get-factura/{id}")
+    public ResponseEntity<List<PagoDTO>> getPagoActive(@PathVariable Integer id ){
+
+        return ResponseEntity.ok(pagoService.getAllPagoFactura(id));
+
     }
 
 
