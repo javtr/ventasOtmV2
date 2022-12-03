@@ -107,6 +107,21 @@ public class QueryServiceImp implements QueryService{
         return (myQuery.getResultList());
     }
 
+    @Override
+    public List queryTotalClientes() {
+        String jpql = "SELECT count(c) FROM Cliente c WHERE c.estado=0";
+        javax.persistence.Query myQuery = em.createQuery(jpql);
+
+        return (myQuery.getResultList());
+    }
+
+    @Override
+    public List queryProductosVendidos() {
+        String jpql = "SELECT count(c) FROM Compra c WHERE c.clienteCompra.estado=0 AND c.facturaCompra.compraActiva=0";
+        javax.persistence.Query myQuery = em.createQuery(jpql);
+
+        return (myQuery.getResultList());
+    }
 
 
 }
