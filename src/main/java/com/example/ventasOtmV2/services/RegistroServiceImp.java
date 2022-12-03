@@ -183,7 +183,9 @@ public class RegistroServiceImp implements RegistroService{
 
 
                 //guardar cada pago
+
                 Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,clienteTemp,medioPago ,facturaId,clienteId,0,0,facturaSend);
+
 
                 pagoService.save(pago);
 
@@ -222,7 +224,9 @@ public class RegistroServiceImp implements RegistroService{
 
 
             //guardar el pago unico
+
             Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,pagoFee,0,clienteTemp   , medioPago, facturaId,clienteId,0,0,facturaSend);
+
 
 
             pagoService.save(pago);
