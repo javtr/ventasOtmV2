@@ -91,7 +91,17 @@ public class QueryServiceImp implements QueryService{
     @Override
     public List queryTotalPagos() {
 
-        String jpql = "SELECT DISTINCT sum(c.precioCompra) FROM Compra c JOIN c.clienteCompra l JOIN c.facturaCompra f WHERE l.estado = 0 AND f.compraActiva = 0";
+        //total compras : 22718
+        String jpql = "SELECT DISTINCT sum(c.precioFinal) FROM Compra c JOIN c.clienteCompra l JOIN c.facturaCompra f WHERE l.estado = 0 AND f.compraActiva = 0";
+
+        //total pagos : 22721
+        //String jpql = "SELECT DISTINCT sum(p.valorPago) FROM Pago p WHERE p.facturaPago.compraActiva = 0 AND p.facturaPago.clienteFactura.estado = 0";
+
+        //total facturas : 22718
+        //String jpql = "SELECT DISTINCT sum(f.valorCompra) FROM Factura f WHERE f.compraActiva = 0 AND f.clienteFactura.estado = 0";
+
+
+
         javax.persistence.Query myQuery = em.createQuery(jpql);
 
         return (myQuery.getResultList());
@@ -101,7 +111,8 @@ public class QueryServiceImp implements QueryService{
     @Override
     public List queryTotalPagosPorMes() {
 
-        String jpql = "SELECT DISTINCT sum(c.precioCompra), max(f.fechaCompra) FROM Compra c JOIN c.clienteCompra l JOIN c.facturaCompra f WHERE l.estado = 0 AND f.compraActiva = 0 GROUP BY EXTRACT(MONTH FROM f.fechaCompra) ORDER BY max(f.fechaCompra)";
+        String jpql = "SELECT DISTINCT sum(c.precioFinal), max(f.fechaCompra) FROM Compra c JOIN c.clienteCompra l JOIN c.facturaCompra f WHERE l.estado = 0 AND f.compraActiva = 0 GROUP BY EXTRACT(MONTH FROM f.fechaCompra) ORDER BY max(f.fechaCompra)";
+
         javax.persistence.Query myQuery = em.createQuery(jpql);
 
         return (myQuery.getResultList());
