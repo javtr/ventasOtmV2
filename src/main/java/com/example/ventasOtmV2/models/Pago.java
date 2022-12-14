@@ -89,22 +89,6 @@ public class Pago {
         return estado;
     }
 
-    public Integer getClientePagoId() {
-        return clientePagoId;
-    }
-
-    public void setClientePagoId(Integer clientePagoId) {
-        this.clientePagoId = clientePagoId;
-    }
-
-    public Integer getFacturaPagoId() {
-        return facturaPagoId;
-    }
-
-    public void setFacturaPagoId(Integer facturaPagoId) {
-        this.facturaPagoId = facturaPagoId;
-    }
-
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
