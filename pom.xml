@@ -62,6 +62,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<jvmArguments> -XX:+UseSerialGC -Xss512k -XX:MaxRAM=72m </jvmArguments>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

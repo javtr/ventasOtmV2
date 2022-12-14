@@ -90,6 +90,16 @@ public class QueryController {
     }
 
 
+    @GetMapping("/total-clientes")
+    public List getTotalTotalClientes( ) {
+        return queryService.queryTotalClientes();
+    }
+
+    @GetMapping("/total-productos")
+    public List getTotalProductos( ) {
+        return queryService.queryProductosVendidos();}
+
+
 
 
 }
