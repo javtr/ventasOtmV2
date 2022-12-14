@@ -23,4 +23,10 @@ public interface QueryService {
 
     public List queryTotalPagosPorMes();
 
+    public List queryTotalClientes();
+
+    public List queryProductosVendidos();
+
+
+
 }
