@@ -29,12 +29,6 @@ public class PagoController {
     private PagoRepository pagoRepository;
 
 
-
-
-    @Autowired
-    private PagoRepository pagoRepository;
-
-
     @PostMapping("/save")
     public ResponseEntity<Pago> add(@RequestBody Pago pago){
         return ResponseEntity.ok(pagoService.save(pago)) ;
