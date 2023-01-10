@@ -92,10 +92,10 @@ public class QueryServiceImp implements QueryService{
     public List queryTotalPagos() {
 
         //total compras : 22718
-        String jpql = "SELECT DISTINCT sum(c.precioFinal) FROM Compra c JOIN c.clienteCompra l JOIN c.facturaCompra f WHERE l.estado = 0 AND f.compraActiva = 0";
+        //String jpql = "SELECT DISTINCT sum(c.precioFinal) FROM Compra c JOIN c.clienteCompra l JOIN c.facturaCompra f WHERE l.estado = 0 AND f.compraActiva = 0";
 
         //total pagos : 22721
-        //String jpql = "SELECT DISTINCT sum(p.valorPago) FROM Pago p WHERE p.facturaPago.compraActiva = 0 AND p.facturaPago.clienteFactura.estado = 0";
+        String jpql = "SELECT DISTINCT sum(p.valorPago) FROM Pago p WHERE p.facturaPago.compraActiva = 0 AND p.facturaPago.clienteFactura.estado = 0";
 
         //total facturas : 22718
         //String jpql = "SELECT DISTINCT sum(f.valorCompra) FROM Factura f WHERE f.compraActiva = 0 AND f.clienteFactura.estado = 0";
