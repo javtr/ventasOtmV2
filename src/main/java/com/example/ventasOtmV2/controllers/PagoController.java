@@ -25,9 +25,6 @@ public class PagoController {
 
     @Autowired
     private PagoService pagoService;
-
-
-
     @Autowired
     private PagoRepository pagoRepository;
 
@@ -92,6 +89,7 @@ public class PagoController {
         return response;
     }
 
+
     @GetMapping("/get-all-dto")
     public ResponseEntity<List<PagoDTO>> getAllPagoDto(){
 
@@ -104,6 +102,7 @@ public class PagoController {
     public ResponseEntity<List<PagoDTO>> getPagoActive(@PathVariable Integer id ){
 
         return ResponseEntity.ok(pagoService.getAllPagoFactura(id));
+
     }
 
 

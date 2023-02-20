@@ -183,28 +183,21 @@ public class RegistroServiceImp implements RegistroService{
 
 
                 //guardar cada pago
-                Pago pago = new Pago(dateCuota,dateCuotaDes,pagoCuota,pagoFee,0,clienteTemp,medioPago ,facturaId,clienteId,0,0,facturaSend);
 
-                pagoService.save(pago);
 
+                if (medioPago.equals("teachable")) {
+
+                    Pago pago = new Pago(dateCuota, dateCuotaDes, pagoCuota, pagoFee, 0, clienteTemp, medioPago, facturaId, clienteId, 0, 0, facturaSend);
+
+                    pagoService.save(pago);
+
+                }else{
+                    Pago pago = new Pago(dateCuota, dateCuota, pagoCuota, pagoFee, 0, clienteTemp, medioPago, facturaId, clienteId, 0, 0, facturaSend);
+
+                    pagoService.save(pago);
+
+                }
             }
-
-/*
-            this.fechaPago = fechaPago;
-            this.fechaDesembolso = fechaDesembolso;
-            this.valorPago = valorPago;
-            this.valorPagoNeto = valorPagoNeto;
-            this.estado = estado;
-            this.tipoPago = tipoPago;
-            this.facturaIdPago = facturaIdPago;
-            this.clienteIdPago = clienteIdPago;
-            this.estadoClientePago = estadoClientePago;
-            this.estadoFacturaPago = estadoFacturaPago;
-            this.facturaPago = facturaPago;
-
- */
-
-
 
 
         } else if (tipoPagoReg.equals("unico")) {
@@ -222,7 +215,9 @@ public class RegistroServiceImp implements RegistroService{
 
 
             //guardar el pago unico
+
             Pago pago = new Pago(registro.getFecha(),registro.getFecha(),totalTodasCompras,pagoFee,0,clienteTemp   , medioPago, facturaId,clienteId,0,0,facturaSend);
+
 
 
             pagoService.save(pago);

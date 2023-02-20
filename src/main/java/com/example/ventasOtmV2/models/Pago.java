@@ -25,6 +25,7 @@ public class Pago {
 
     private Integer estado;
 
+
     private String clienteNombre;
 
 
@@ -39,6 +40,7 @@ public class Pago {
     private Integer estadoFacturaPago;
 
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "factura_id",nullable = false)
     private Factura facturaPago;
@@ -47,22 +49,26 @@ public class Pago {
     public Pago() {
     }
 
+
     public Pago(String fechaPago) {
         this.fechaPago = fechaPago;
     }
 
     public Pago(String fechaPago, String fechaDesembolso, double valorPago, double valorPagoNeto, Integer estado, String clienteNombre, String tipoPago, Integer facturaIdPago, Integer clienteIdPago, Integer estadoClientePago, Integer estadoFacturaPago, Factura facturaPago) {
+
         this.fechaPago = fechaPago;
         this.fechaDesembolso = fechaDesembolso;
         this.valorPago = valorPago;
         this.valorPagoNeto = valorPagoNeto;
         this.estado = estado;
+
         this.clienteNombre = clienteNombre;
         this.tipoPago = tipoPago;
         this.facturaIdPago = facturaIdPago;
         this.clienteIdPago = clienteIdPago;
         this.estadoClientePago = estadoClientePago;
         this.estadoFacturaPago = estadoFacturaPago;
+
         this.facturaPago = facturaPago;
     }
 
