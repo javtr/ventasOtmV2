@@ -3,6 +3,7 @@ package com.example.ventasOtmV2.controllers;
 import com.example.ventasOtmV2.models.FormPagos;
 import com.example.ventasOtmV2.models.Pago;
 import com.example.ventasOtmV2.models.Registro;
+import com.example.ventasOtmV2.repository.PagoRepository;
 import com.example.ventasOtmV2.services.QueryService;
 import com.example.ventasOtmV2.services.RegistroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,10 @@ public class QueryController {
 
     @Autowired
     private QueryService queryService;
+
+    @Autowired
+    private PagoRepository pagoRepository;
+
 
 
 
@@ -84,10 +89,13 @@ public class QueryController {
         return queryService.queryTotalPagos();
     }
 
+    /*
     @GetMapping("/pagos-mes")
     public List getTotalPagosMes( ) {
         return queryService.queryTotalPagosPorMes();
     }
+
+     */
 
 
     @GetMapping("/total-clientes")
@@ -100,6 +108,10 @@ public class QueryController {
         return queryService.queryProductosVendidos();}
 
 
+
+    @GetMapping("/pagos-mes")
+    public List getTotalProductosPorMes( ) {
+        return pagoRepository.getSalesByMonth();}
 
 
 }

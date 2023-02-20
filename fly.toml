@@ -1,6 +1,6 @@
-# fly.toml file generated for white-forest-8775 on 2023-01-09T19:52:58-05:00
+# fly.toml file generated for blue-moon-9351 on 2023-01-10T10:08:47-05:00
 
-app = "white-forest-8775"
+app = "blue-moon-9351"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []

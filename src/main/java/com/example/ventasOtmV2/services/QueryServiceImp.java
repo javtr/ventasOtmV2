@@ -112,11 +112,22 @@ public class QueryServiceImp implements QueryService{
     public List queryTotalPagosPorMes() {
 
         String jpql = "SELECT DISTINCT sum(c.precioFinal), max(f.fechaCompra) FROM Compra c JOIN c.clienteCompra l JOIN c.facturaCompra f WHERE l.estado = 0 AND f.compraActiva = 0 GROUP BY EXTRACT(MONTH FROM f.fechaCompra) ORDER BY max(f.fechaCompra)";
+        //String jpql = "SELECT sum(valor), mes > ( SELECT factura.id, factura.valorCompra as valor, DATE_FORMAT(factura.fechaCompra, '%Y-%m') AS mes FROM factura inner join pago on factura.id = pago.facturaId inner join cliente on factura.clienteId = cliente.id where pago.estado = 0 and factura.compraActiva = 0 and cliente.estado = 0 GROUP BY factura.id order by factura.fechaCompra) as resultado1 group by mes";
+        //String jpql = "SELECT factura.id, factura.valorCompra as valor, DATE_FORMAT(factura.fechaCompra, '%Y-%m') AS mes FROM factura inner join pago on factura.id = pago.facturaId inner join cliente on factura.clienteId = cliente.id where pago.estado = 0 and factura.compraActiva = 0 and cliente.estado = 0 GROUP BY factura.id order by factura.fechaCompra";
 
-        javax.persistence.Query myQuery = em.createQuery(jpql);
+
+
+
+        javax.persistence.Query myQuery = em.createNativeQuery(jpql);
 
         return (myQuery.getResultList());
     }
+
+
+
+
+
+
 
     @Override
     public List queryTotalClientes() {
